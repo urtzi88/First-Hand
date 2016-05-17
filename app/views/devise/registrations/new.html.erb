@@ -1,0 +1,79 @@
+<div class="columns">
+  <div class="column is-half is-offset-one-quarter">
+    <h2 class="title is-1">Sign up</h2>
+
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= devise_error_messages! %>
+
+      <p class="control">
+        <%= f.text_field :name, autofocus: true, placeholder: "Name", class: "input" %>
+      </p>
+
+      <p class="control">
+        <%= f.text_field :surname, placeholder: "Surname", class: "input"  %>
+      </p>
+
+      <p class="control">
+        <%= f.email_field :email, placeholder: "Email", class: "input"  %>
+      </p>
+
+      <p class="control">
+        <%= f.password_field :password, autocomplete: "off", placeholder: "Password", class: "input"  %>
+      </p>
+
+      <p class="control">
+        <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: "Password Confirmation", class: "input"  %>
+      </p>
+
+      <p class="control">
+        <%= f.telephone_field :phone_number, placeholder: "Phone Number", class: "input"  %>
+      </p>
+
+      <p class="control">
+        <%= f.text_field :address, placeholder: "Address", class: "input"  %>
+      </p>
+
+      <p class="control">
+        <%= f.text_field :postcode, placeholder: "Postcode", class: "input"  %>
+      </p>
+
+      <p class="control">
+        <%= f.text_field :city, placeholder: "City", class: "input"  %>
+      </p>
+
+      <p class="control">
+        <%= f.radio_button(:type, "Client", class: "js-user-type") %>
+        <%= label_tag(:type, "Client account") %>
+        <%= f.radio_button(:type, "Provider", class: "js-user-type") %>
+        <%= label_tag(:type, "Provider account") %>
+      </p>
+
+      <p class="control hidden js-only-provider">
+          <%= f.label :service_id %>
+          <span class="select">
+          <select name="user[service_id]">
+            <% select_tag_array.each do |service| %>
+              <% if service.kind_of?(String) %>
+                </optgroup><optgroup label="<%= service %>">
+              <% else %>
+                <% service.each do |serv| %>
+                  <option value="<%= serv[1] %>"><%= serv[0] %></option>
+                <% end %>
+              <% end %>
+            <% end %>
+          </select>
+        </span>
+      </p>
+
+      <p class="control hidden js-only-provider">
+        <%= f.text_field :price_per_hour, placeholder: "Price per hour", class: "input" %>
+      </p>
+
+      <p class="control">
+        <%= f.submit "Sign up", class: "button is-primary" %>
+      </p>
+    <% end %>
+
+    <%= render "devise/shared/links" %>
+  </div>
+</div>

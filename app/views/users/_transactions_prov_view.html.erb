@@ -1,0 +1,8 @@
+<div class="container">
+  <h1 class="title is-3">Pending Services:</h1>
+  <div class="box">
+    <% @transactions.each do |transaction| %>
+      <h1 class="title is-5"><%= get_service_name(@user.service_id) %> for: <%= get_client_name(transaction.client_id) %></h1>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,28 @@
+.hidden {
+    display: none;
+}
+
+.container.is-user {
+    max-width: 100%;
+    margin 0;
+}
+
+.filter-form {
+    padding: 25px 0 0 0;
+}
+
+div.filter-results {
+    margin-top: 20px;
+}
+
+div.client-requests {
+    margin-top: 20px;
+}
+
+div.user-details {
+    margin-top: 15px;
+}
+
+h3.title.is-5.requests-title {
+    margin-bottom: 0;
+}

@@ -1,0 +1,36 @@
+<h1 class="title is-3">Requests</h1>
+<div class="js-current-requests">
+  <h3 class="title is-5 requests-title">Pending requests:</h3>
+  <div class="js-pending-requests">
+    <% @transactions.each do |transaction| %>
+      <% if transaction.status == "Pending" %>
+        <p data-id="<%= transaction.id %>">
+          <%= transaction.id %>
+          <%= get_provider_name(transaction.provider_id) %>
+        </p>
+      <% end %>
+    <% end %>
+  </div>
+  <h3 class="title is-5 requests-title">Accepted requests:</h3>
+  <div class="js-accepted-requests">
+    <% @transactions.each do |transaction| %>
+      <% if transaction.status == "Accepted" %>
+        <p data-id="<%= transaction.id %>">
+          <%= transaction.id %>
+          <%= get_provider_name(transaction.provider_id) %>
+        </p>
+      <% end %>
+    <% end %>
+  </div>
+  <h3 class="title is-5 requests-title">Rejected requests:</h3>
+  <div class="js-rejected-requests">
+    <% @transactions.each do |transaction| %>
+      <% if transaction.status == "Rejected" %>
+        <p data-id="<%= transaction.id %>">
+          <%= transaction.id %>
+          <%= get_provider_name(transaction.provider_id) %>
+        </p>
+      <% end %>
+    <% end %>
+  </div>
+</div>

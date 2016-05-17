@@ -1,0 +1,18 @@
+<%= form_for @provider, url: ('/users_index'), html: {class: "js-filter-form"} do |f| %>
+      <%= f.label :service_id %>
+      <span class="select">
+      <select id="js-selection" name="user[service_id]">
+        <% select_tag_array.each do |service| %>
+          <% if service.kind_of?(String) %>
+            </optgroup><optgroup label="<%= service %>">
+          <% else %>
+            <% service.each do |serv| %>
+              <option value="<%= serv[1] %>"><%= serv[0] %></option>
+            <% end %>
+          <% end %>
+        <% end %>
+      </select>
+    </span>
+
+    <%= f.submit "Filter", class: "button is-primary" %>
+<% end %>
