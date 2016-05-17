@@ -9,13 +9,20 @@ class TransactionsController < ApplicationController
   end
 
   def create
-    provider = Provider.find(params[:user_id]);
+    provider = Provider.find(params[:user_id])
     transaction = provider.transactions.create(
       provider_id: provider.id,
       client_id: current_user.id,
       status: "Pending",
       date_time: params[:date_time]
     );
+    render json: transaction
+  end
+
+  def update
+    client = Client.find(params[:user_id])
+    transaction = client.transactions.find(params[:id])
+    transaction.update(status: params[:status])
     render json: transaction
   end
 

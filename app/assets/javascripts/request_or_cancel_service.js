@@ -6,6 +6,7 @@ $(function() {
     });
 
     $('.filter-results').delegate('.js-send-request', 'click', function(event) {
+        event.preventDefault();
         var provider = event.currentTarget.getAttribute('data-prov');
         var $button = $(event.currentTarget.parentNode.parentNode.parentNode).children('.js-request-service');
         var date = $(event.currentTarget.parentNode.parentNode).children('.user-date').children('#user-date').val();

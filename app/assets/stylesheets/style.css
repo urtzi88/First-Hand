@@ -26,3 +26,7 @@ div.user-details {
 h3.title.is-5.requests-title {
     margin-bottom: 0;
 }
+
+.is-wrapped {
+    flex-wrap: wrap;
+}

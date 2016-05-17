@@ -1,8 +1,67 @@
-<div class="container">
-  <h1 class="title is-3">Pending Services:</h1>
-  <div class="box">
+<div class="box">
+  <div class="columns">
+    <h1 class="title is-3">Pending Services:</h1>
+  </div>
+  <div class="columns is-wrapped js-pending-services">
     <% @transactions.each do |transaction| %>
-      <h1 class="title is-5"><%= get_service_name(@user.service_id) %> for: <%= get_client_name(transaction.client_id) %></h1>
+      <% if transaction.status == "Pending" %>
+        <div class="column is-half is-hosting-a-card">
+          <div class="card is-fullwidth">
+            <div class="card-content">
+              <div class="media">
+                <div class="media-left">
+                  <figure class="image is-32x32">
+                    <img src="http://placehold.it/64x64" alt="Image">
+                  </figure>
+                </div>
+                <div class="media-content">
+                  <p class="title is-5"><%= get_client_name(transaction.client_id) %></p>
+                </div>
+              </div>
+              <div class="content">
+                <p>On: <%= transaction.date_time %></p>
+                <button class="button is-success js-accept-service" data-client="<%= transaction.client_id %>" data-transaction="<%= transaction.id %>">Accept service</button>
+                <button class="button is-danger">Reject service</button>
+                <button class="button is-primary is-hidden js-pend-service" data-client="<%= transaction.client_id %>" data-transaction="<%= transaction.id %>">Pend service</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+<div class="box">
+  <div class="columns">
+    <h1 class="title is-3">Accepted Services:</h1>
+  </div>
+  <div class="columns is-wrapped js-accepted-services">
+    <% @transactions.each do |transaction| %>
+      <% if transaction.status == "Accepted" %>
+        <div class="column is-half is-hosting-a-card">
+          <div class="card is-fullwidth">
+            <div class="card-content">
+              <div class="media">
+                <div class="media-left">
+                  <figure class="image is-32x32">
+                    <img src="http://placehold.it/64x64" alt="Image">
+                  </figure>
+                </div>
+                <div class="media-content">
+                  <p class="title is-5"><%= get_client_name(transaction.client_id) %></p>
+                </div>
+              </div>
+              <div class="content">
+                <p>On: <%= transaction.date_time %></p>
+                <button class="button is-success js-accept-service" data-client="<%= transaction.client_id %>" data-transaction="<%= transaction.id %>">Mark as complete</button>
+                <button class="button is-danger">Cancel service</button>
+                <button class="button is-primary js-pend-service" data-client="<%= transaction.client_id %>" data-transaction="<%= transaction.id %>">Pend service</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
     <% end %>
   </div>
 </div>

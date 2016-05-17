@@ -8,7 +8,7 @@ module TestsHelper
     Service.find(provider.service_id).name
   end
 
-  def get_client_name(transaction)
+  def get_client_name_tests(transaction)
     Client.find(transaction.client_id).name
   end
 
