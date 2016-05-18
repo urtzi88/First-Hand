@@ -38,3 +38,9 @@ p.subtitle.has-no-bottom-margin {
 p.buttons-fix .button {
     display: inline-block;
 }
+
+.is-rating-label {
+    display: inline-block;
+    width: 12px;
+    text-align: center;
+}

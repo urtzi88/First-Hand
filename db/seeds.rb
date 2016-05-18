@@ -25,6 +25,7 @@ car.children.create(name: "Cleaning")
   faddress = "Calle Bravo Murillo"
   fpostcode = ['28015', '28003', '28020'].sample
   fcity = "Madrid"
+  favatar = Faker::Avatar.image
 
   Client.create(
     name: fname,
@@ -34,7 +35,8 @@ car.children.create(name: "Cleaning")
     phone_number: fnumber,
     address: faddress,
     postcode: fpostcode,
-    city: fcity
+    city: fcity,
+    avatar: favatar
   )
 
   puts("New client created: Name: " + fname + fsurname + ", #{fname.downcase}@clientmail.com, " + fnumber + faddress + fpostcode + fcity)
@@ -49,6 +51,7 @@ end
   fcity = "Madrid"
   service = rand(6..18)
   price = rand(6..15)
+  favatar = Faker::Avatar.image
 
   Provider.create(
     name: fname,
@@ -60,7 +63,8 @@ end
     postcode: fpostcode,
     city: fcity,
     service_id: service,
-    price_per_hour: price
+    price_per_hour: price,
+    avatar: favatar
   )
 
   puts("New provider created: Name: #{fname} #{fsurname} #{fname.downcase}@providermail.com, #{fnumber} #{faddress} #{fpostcode} #{fcity}, Service: #{service}, Price: #{price}")

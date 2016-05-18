@@ -1,6 +1,49 @@
 <div class="js-service-wrapper">
   <div class="box">
     <div class="columns">
+      <h1 class="title is-3">Completed Services:</h1>
+    </div>
+    <div class="columns is-wrapped js-completed-services">
+      <% @transactions.each do |transaction| %>
+        <% if transaction.provider_status == "Complete" && transaction.client_rating.blank? %>
+          <% provider = get_provider(transaction.provider_id) %>
+          <div class="column is-half is-hosting-a-card">
+            <div class="card is-fullwidth">
+              <div class="card-content">
+                <div class="media">
+                  <div class="media-left">
+                    <figure class="image is-64x64">
+                      <%= image_tag provider.avatar.url(:thumb) %>
+                    </figure>
+                  </div>
+                  <div class="media-content">
+                    <p class="title is-5"><%= provider.name %></p>
+                    <p class="subtitle is-7 has-no-bottom-margin"><%= provider.address %></p>
+                    <p class="subtitle is-7"><%= provider.postcode %> - <%= provider.city %></p>
+                  </div>
+                </div>
+                <div class="content">
+                  <p>
+                    On: <%= transaction.date_time.strftime('%a %d %b %Y') %>
+                    At: <%= transaction.date_time.to_s.split(' ')[1] %>
+                  </p>
+                  <% if transaction.client_rating.present? %>
+                    <button class="button is-success js-feedback-provider is-disabled" data-provider="<%= transaction.provider_id %>" data-transaction="<%= transaction.id %>" data-color="green" data-status="Complete">Give feedback</button>
+                  <% else %>
+                    <button class="button is-success js-feedback-provider" data-provider="<%= transaction.provider_id %>" data-transaction="<%= transaction.id %>" data-color="green" data-status="Complete">Give feedback</button>
+                  <% end %>
+                  <%= render partial: "feedback_form", locals: {transaction: transaction} %>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="box">
+    <div class="columns">
       <h1 class="title is-3">Pending Services:</h1>
     </div>
     <div class="columns is-wrapped js-pending-services">
@@ -65,7 +108,7 @@
                     On: <%= transaction.date_time.strftime('%a %d %b %Y') %>
                     At: <%= transaction.date_time.to_s.split(' ')[1] %>
                   </p>
-                  <button class="button is-danger js-action-service-client" data-provider="<%= transaction.provider_id %>" data-transaction="<%= transaction.id %>" data-color="c-red" data-prov-status="<%= transaction.provider_status %>" data-status="Cancelled">Cancel service</button>
+                  <button class="button is-danger js-action-service-client" data-provider="<%= transaction.provider_id %>" data-transaction="<%= transaction.id %>" data-color="c-red" data-prov-status="<%= transaction.provider_status %>" data-status="Cancelled">Cancel request</button>
                 </div>
               </div>
             </div>

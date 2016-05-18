@@ -5,6 +5,8 @@ Rails.application.routes.draw do
     resources :transactions
   end
 
+  patch '/users/:user_id/transactions/:id/feedback', to: 'transactions#feedback', as: :transaction_feedback
+
   get '/client/:client_id/search', to: 'users#search', as: :client_search
 
   get '/provider_list', to: 'users#provider_list'

@@ -33,6 +33,16 @@ class TransactionsController < ApplicationController
     render json: transaction
   end
 
+  def feedback
+    transaction = Transaction.find(params[:id])
+    if current_user.type == "Provider"
+      transaction.update(provider_feedback: params[:rat_feed][:feedback], provider_rating: params[:rat_feed][:rating])
+    elsif current_user.type == "Client"
+      transaction.update(client_feedback: params[:rat_feed][:feedback], client_rating: params[:rat_feed][:rating])
+    end
+    render json: transaction
+  end
+
   # def destroy
   #   provider = Provider.find(params[:user_id])
   #   transaction = provider.transactions.find(params[:id])

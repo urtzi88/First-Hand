@@ -28,7 +28,7 @@ $(function() {
         var obj = {button: button,
                    status: status
                };
-        if(status != 'Archived' && status != 'Complete') {
+        if(status != 'Archived') {
             $.ajax({
                 method: 'PATCH',
                 url: '/users/' + user + '/transactions/' + transaction,
@@ -46,6 +46,8 @@ $(function() {
         var button = this.button;
         if(prov_status == "Accepted" && cli_status == '') {
             moveToApproved(data, status, button);
+        } else if (prov_status == "Complete" && cli_status == '') {
+            moveToComplete(data, status, button);
         } else if (prov_status == "Pending" && cli_status == '') {
             moveToPending(data, status, button);
         } else if (prov_status == "Rejected" && cli_status == '') {
@@ -68,6 +70,25 @@ $(function() {
         $('.js-accepted-services').append(card_content);
         line_req.remove();
         $('.js-accepted-requests').append(line_req);
+    }
+
+    function moveToComplete(data, status, button) {
+        var card = $(button).closest('.is-hosting-a-card');
+        var form_goes_here = $(button).closest('.js-action-service-provider');
+        console.log(form_goes_here);
+        var provider = $(button).closest('.js-action-service-provider')[0].getAttribute('data-provider');
+        var transaction = $(button).closest('.js-action-service-provider')[0].getAttribute('data-transaction');
+        $(button).removeClass('is-hidden js-action-service-provider').addClass('js-feedback-provider').attr('data-status', 'Complete').text('Give feedback');
+        $(button).siblings('[data-color="red"]').addClass('is-hidden');
+        $(button).siblings('[data-color="blue"]').addClass('is-hidden');
+        var form = generateFeedbackForm(provider, transaction);
+        form_goes_here.after(form);
+        var card_content = '<div class="column is-half is-hosting-a-card">' + card.html() + '</div>';
+        var line_req = $('[data-id=' + data.id + ']');
+        card.remove();
+        $('.js-completed-services').append(card_content);
+        line_req.remove();
+        $('.js-completed-requests').append(line_req);
     }
 
     function moveToPending(data, status, button) {

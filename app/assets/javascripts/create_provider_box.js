@@ -1,6 +1,9 @@
 function createProviderBox(provider) {
     var button = generateButton(provider);
-    var html = '<div class="box is-fullwidth">' +
+    var html = '<div class="box is-fullwidth"><article class="media">' +
+        '<div class="media-left"><figure class="image is-128x128">' +
+        '<img src="/system/providers/avatars/000/000/0' + provider.id + '/medium/' + provider.avatar_file_name + '" alt="avatar"></figure></div>' +
+        '<div class="media-content"><div class="content">' +
         '<h1 class="title is-3">' + provider.name + ' ' + provider.surname + '</h1>' +
         '<div class="columns"><div class="column is-half">' +
         '<p><strong>Address: </strong>' + provider.address + '</p>' +
@@ -11,7 +14,7 @@ function createProviderBox(provider) {
         '<p><strong>Price: </strong>' + provider.price_per_hour + '$ \/ hour</p>' +
         '</div></div><div class="columns"><div class="column is-half">' +
         '<p><strong>Email: </strong>' + provider.email + '</p>' +
-        '<p><strong>Phont Number: </strong>' + provider.phone_number + '</p>' +
+        '<p><strong>Phone Number: </strong>' + provider.phone_number + '</p>' +
         '</div><div class="column is-half">' +
         button +
         '<div class="date-and-time hidden">' +
@@ -23,7 +26,7 @@ function createProviderBox(provider) {
         '<input id="user-time" type="time" name="service_time">' +
         '</div><div class="user-datetime-send">' +
         '<button class="js-send-request button is-primary" data-prov="' + provider.id + '">Send</button>' +
-        '</div></div></div></div></div></div>';
+        '</div></div></div></div></div></div></div></div></article></div>';
 
     return(html);
 }

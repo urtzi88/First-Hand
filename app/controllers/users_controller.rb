@@ -3,6 +3,7 @@ class UsersController < ApplicationController
 
   def profile
     @provider = Provider.new
+    @transaction = Transaction.new
     @user = current_user
     @transactions = current_user.transactions.order(id: :asc)
     if @user.type == "Client"
