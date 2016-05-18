@@ -1,7 +1,8 @@
 <div class="columns">
   <div class="column is-one-quarter">
     <div class="box user-details">
-      <p>Name: <%= @user.name %></p>
+      <%= image_tag @user.avatar.url(:medium) %>
+      <p>CLIENT: <%= @user.name %></p>
       <p>Id: <%= @user.id %></p>
       <p>Email: <%= @user.email %></p>
       <p>Number: <%= @user.phone_number %></p>
@@ -9,6 +10,7 @@
       <p>Type: <%= @user.type %></p>
       <%= link_to "Edit details", edit_user_registration_path, class: "button is-primary is-small" %>
       <%= link_to "See all index", users_index_path, class: "button is-primary is-small" %>
+      <%= link_to "Search", client_search_path(@user), class: "button is-primary is-small" %>
     </div>
     <div class="box client-requests">
       <%= render "transactions_index" %>
@@ -16,9 +18,7 @@
   </div>
   <div class="column is-three-quarters">
     <div class="container filter-form">
-      <%= render 'search_form' %>
-    </div>
-    <div class="container filter-results">
+      <%= render "transactions_client_view" %>
     </div>
   </div>
 </div>

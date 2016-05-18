@@ -9,7 +9,6 @@ class CreateTransactions < ActiveRecord::Migration
       t.integer :client_rating
       t.text :provider_feedback
       t.integer :provider_rating
-      t.string :status
 
       t.timestamps null: false
     end

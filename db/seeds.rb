@@ -53,7 +53,7 @@ end
   Provider.create(
     name: fname,
     surname: fsurname,
-    email: "#{fname.downcase}@providertmail.com",
+    email: "#{fname.downcase}@providermail.com",
     password: "123456",
     phone_number: fnumber,
     address: faddress,
@@ -63,5 +63,5 @@ end
     price_per_hour: price
   )
 
-  puts("New provider created: Name: #{fname} #{fsurname} #{fname.downcase}@clientmail.com, #{fnumber} #{faddress} #{fpostcode} #{fcity}, Service: #{service}, Price: #{price}")
+  puts("New provider created: Name: #{fname} #{fsurname} #{fname.downcase}@providermail.com, #{fnumber} #{faddress} #{fpostcode} #{fcity}, Service: #{service}, Price: #{price}")
 end

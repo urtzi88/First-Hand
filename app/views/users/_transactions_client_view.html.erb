@@ -6,20 +6,20 @@
     <div class="columns is-wrapped js-pending-services">
       <% @transactions.each do |transaction| %>
         <% if transaction.provider_status == "Pending" && transaction.client_status == "Requested" %>
-          <% client = get_client(transaction.client_id) %>
+          <% provider = get_provider(transaction.provider_id) %>
           <div class="column is-half is-hosting-a-card">
             <div class="card is-fullwidth">
               <div class="card-content">
                 <div class="media">
                   <div class="media-left">
                     <figure class="image is-64x64">
-                      <%= image_tag client.avatar.url(:thumb) %>
+                      <%= image_tag provider.avatar.url(:thumb) %>
                     </figure>
                   </div>
                   <div class="media-content">
-                    <p class="title is-5"><%= client.name %></p>
-                    <p class="subtitle is-7 has-no-bottom-margin"><%= client.address %></p>
-                    <p class="subtitle is-7"><%= client.postcode %> - <%= client.city %></p>
+                    <p class="title is-5"><%= provider.name %>: <%= get_service_name(provider.service_id) %></p>
+                    <p class="subtitle is-7 has-no-bottom-margin"><%= provider.address %></p>
+                    <p class="subtitle is-7"><%= provider.postcode %> - <%= provider.city %></p>
                   </div>
                 </div>
                 <div class="content">
@@ -27,9 +27,7 @@
                     On: <%= transaction.date_time.strftime('%a %d %b %Y') %>
                     At: <%= transaction.date_time.to_s.split(' ')[1] %>
                   </p>
-                  <button class="button is-success js-action-service-provider" data-client="<%= transaction.client_id %>" data-transaction="<%= transaction.id %>" data-color="green" data-status="Accepted">Accept service</button>
-                  <button class="button is-danger js-action-service-provider" data-client="<%= transaction.client_id %>" data-transaction="<%= transaction.id %>" data-color="red" data-status="Rejected">Reject service</button>
-                  <button class="button is-primary is-hidden js-action-service-provider" data-client="<%= transaction.client_id %>" data-transaction="<%= transaction.id %>" data-color="blue" data-status="">Pend service</button>
+                  <button class="button is-danger js-action-service-client" data-provider="<%= transaction.provider_id %>" data-transaction="<%= transaction.id %>" data-color="c-red" data-prov-status="<%= transaction.provider_status %>" data-status="Cancelled">Cancel request</button>
                 </div>
               </div>
             </div>
@@ -46,20 +44,20 @@
     <div class="columns is-wrapped js-accepted-services">
       <% @transactions.each do |transaction| %>
         <% if transaction.provider_status == "Accepted" && transaction.client_status == "Requested" %>
-          <% client = get_client(transaction.client_id) %>
+          <% provider = get_provider(transaction.provider_id) %>
           <div class="column is-half is-hosting-a-card">
             <div class="card is-fullwidth">
               <div class="card-content">
                 <div class="media">
                   <div class="media-left">
                     <figure class="image is-64x64">
-                      <%= image_tag client.avatar.url(:thumb) %>
+                      <%= image_tag provider.avatar.url(:thumb) %>
                     </figure>
                   </div>
                   <div class="media-content">
-                    <p class="title is-5"><%= client.name %></p>
-                    <p class="subtitle is-7 has-no-bottom-margin"><%= client.address %></p>
-                    <p class="subtitle is-7"><%= client.postcode %> - <%= client.city %></p>
+                    <p class="title is-5"><%= provider.name %>: <%= get_service_name(provider.service_id) %></p>
+                    <p class="subtitle is-7 has-no-bottom-margin"><%= provider.address %></p>
+                    <p class="subtitle is-7"><%= provider.postcode %> - <%= provider.city %></p>
                   </div>
                 </div>
                 <div class="content">
@@ -67,9 +65,7 @@
                     On: <%= transaction.date_time.strftime('%a %d %b %Y') %>
                     At: <%= transaction.date_time.to_s.split(' ')[1] %>
                   </p>
-                  <button class="button is-success js-action-service-provider" data-client="<%= transaction.client_id %>" data-transaction="<%= transaction.id %>" data-color="green" data-status="Complete">Mark as complete</button>
-                  <button class="button is-danger js-action-service-provider" data-client="<%= transaction.client_id %>" data-transaction="<%= transaction.id %>" data-color="red" data-status="Rejected">Reject service</button>
-                  <button class="button is-primary js-action-service-provider" data-client="<%= transaction.client_id %>" data-transaction="<%= transaction.id %>" data-color="blue" data-status="Pending">Pend service</button>
+                  <button class="button is-danger js-action-service-client" data-provider="<%= transaction.provider_id %>" data-transaction="<%= transaction.id %>" data-color="c-red" data-prov-status="<%= transaction.provider_status %>" data-status="Cancelled">Cancel service</button>
                 </div>
               </div>
             </div>
@@ -86,20 +82,20 @@
     <div class="columns is-wrapped js-rejected-services">
       <% @transactions.each do |transaction| %>
         <% if transaction.provider_status == "Rejected" && transaction.client_status == "Requested" %>
-          <% client = get_client(transaction.client_id) %>
+          <% provider = get_provider(transaction.provider_id) %>
           <div class="column is-half is-hosting-a-card">
             <div class="card is-fullwidth">
               <div class="card-content">
                 <div class="media">
                   <div class="media-left">
                     <figure class="image is-64x64">
-                      <%= image_tag client.avatar.url(:thumb) %>
+                      <%= image_tag provider.avatar.url(:thumb) %>
                     </figure>
                   </div>
                   <div class="media-content">
-                    <p class="title is-5"><%= client.name %></p>
-                    <p class="subtitle is-7 has-no-bottom-margin"><%= client.address %></p>
-                    <p class="subtitle is-7"><%= client.postcode %> - <%= client.city %></p>
+                    <p class="title is-5"><%= provider.name %>: <%= get_service_name(provider.service_id) %></p>
+                    <p class="subtitle is-7 has-no-bottom-margin"><%= provider.address %></p>
+                    <p class="subtitle is-7"><%= provider.postcode %> - <%= provider.city %></p>
                   </div>
                 </div>
                 <div class="content">
@@ -107,9 +103,7 @@
                     On: <%= transaction.date_time.strftime('%a %d %b %Y') %>
                     At: <%= transaction.date_time.to_s.split(' ')[1] %>
                   </p>
-                  <button class="button is-success js-action-service-provider is-hidden" data-client="<%= transaction.client_id %>" data-transaction="<%= transaction.id %>" data-color="green" data-status="">Mark as complete</button>
-                  <button class="button is-danger js-action-service-provider" data-client="<%= transaction.client_id %>" data-transaction="<%= transaction.id %>" data-color="red" data-status="Archived">Archive</button>
-                  <button class="button is-primary js-action-service-provider" data-client="<%= transaction.client_id %>" data-transaction="<%= transaction.id %>" data-color="blue" data-status="Pending">Pend service</button>
+                  <button class="button is-danger js-action-service-client" data-provider="<%= transaction.provider_id %>" data-transaction="<%= transaction.id %>" data-color="c-red" data-prov-status="<%= transaction.provider_status %>" data-status="Archived">Archive</button>
                 </div>
               </div>
             </div>
@@ -126,20 +120,20 @@
     <div class="columns is-wrapped js-cancelled-services">
       <% @transactions.each do |transaction| %>
         <% if transaction.client_status == "Cancelled" %>
-          <% client = get_client(transaction.client_id) %>
+          <% provider = get_provider(transaction.provider_id) %>
           <div class="column is-half is-hosting-a-card">
             <div class="card is-fullwidth">
               <div class="card-content">
                 <div class="media">
                   <div class="media-left">
                     <figure class="image is-64x64">
-                      <%= image_tag client.avatar.url(:thumb) %>
+                      <%= image_tag provider.avatar.url(:thumb) %>
                     </figure>
                   </div>
                   <div class="media-content">
-                    <p class="title is-5"><%= client.name %></p>
-                    <p class="subtitle is-7 has-no-bottom-margin"><%= client.address %></p>
-                    <p class="subtitle is-7"><%= client.postcode %> - <%= client.city %></p>
+                    <p class="title is-5"><%= provider.name %>: <%= get_service_name(provider.service_id) %></p>
+                    <p class="subtitle is-7 has-no-bottom-margin"><%= provider.address %></p>
+                    <p class="subtitle is-7"><%= provider.postcode %> - <%= provider.city %></p>
                   </div>
                 </div>
                 <div class="content">
@@ -147,7 +141,7 @@
                     On: <%= transaction.date_time.strftime('%a %d %b %Y') %>
                     At: <%= transaction.date_time.to_s.split(' ')[1] %>
                   </p>
-                  <button class="button is-danger js-action-service-provider" data-client="<%= transaction.client_id %>" data-transaction="<%= transaction.id %>" data-color="red" data-status="Archived">Archive</button>
+                  <button class="button is-primary js-action-service-client" data-provider="<%= transaction.provider_id %>" data-transaction="<%= transaction.id %>" data-color="c-red" data-prov-status="<%= transaction.provider_status %>" data-status="Requested">Restore request</button>
                 </div>
               </div>
             </div>

@@ -2,16 +2,15 @@
   <div class="column is-one-quarter">
     <div class="box user-details">
       <%= image_tag @user.avatar.url(:medium) %>
-      <p>PROVIDER: <%= @user.name %></p>
+      <p>CLIENT: <%= @user.name %></p>
       <p>Id: <%= @user.id %></p>
       <p>Email: <%= @user.email %></p>
       <p>Number: <%= @user.phone_number %></p>
       <p>Address: <%= @user.address %></p>
       <p>Type: <%= @user.type %></p>
-      <p>Service: <%= get_service_name(@user.service_id) %></p>
-      <p>Price: <%= @user.price_per_hour %></p>
       <%= link_to "Edit details", edit_user_registration_path, class: "button is-primary is-small" %>
       <%= link_to "See all index", users_index_path, class: "button is-primary is-small" %>
+      <%= link_to "Profile", '/profile', class: "button is-primary is-small" %>
     </div>
     <div class="box client-requests">
       <%= render "transactions_index" %>
@@ -19,7 +18,9 @@
   </div>
   <div class="column is-three-quarters">
     <div class="container filter-form">
-      <%= render "transactions_prov_view" %>
+      <%= render 'search_form' %>
+    </div>
+    <div class="container filter-results">
     </div>
   </div>
 </div>

@@ -32,6 +32,8 @@ gem 'font-awesome-rails'
 
 gem 'rails_12factor', group: :production
 
+gem 'paperclip'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

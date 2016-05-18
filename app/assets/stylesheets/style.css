@@ -20,7 +20,7 @@ div.client-requests {
 }
 
 div.user-details {
-    margin-top: 15px;
+    margin-top: 25px;
 }
 
 h3.title.is-5.requests-title {
@@ -29,4 +29,12 @@ h3.title.is-5.requests-title {
 
 .is-wrapped {
     flex-wrap: wrap;
+}
+
+p.subtitle.has-no-bottom-margin {
+    margin-bottom: 0;
+}
+
+p.buttons-fix .button {
+    display: inline-block;
 }

@@ -6,6 +6,11 @@
       <%= devise_error_messages! %>
 
       <p class="control">
+        <%= f.label :avatar, class: 'col-sm-2 control-label'  %>
+        <%= f.file_field :avatar %>
+      </p>
+
+      <p class="control">
         <%= f.text_field :name, autofocus: true, placeholder: "Name", class: "input" %>
       </p>
 

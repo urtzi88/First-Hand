@@ -15,7 +15,7 @@
 <h1 class="title is-1">Transactions</h1>
 <ul>
 <% @transactions.each do |transaction| %>
-  <li>Between <%= get_client_name_tests(transaction) %> and <%= get_provider_name_tests(transaction) %> at <%= transaction.date_time %>. Service: <%= get_provider_service(transaction) %></li>
+  <li><%= transaction.id %> <%= transaction.provider_status %> <%= transaction.client_status %>  Between <%= get_client_name_tests(transaction) %> and <%= get_provider_name_tests(transaction) %> at <%= transaction.date_time %>. Service: <%= get_provider_service(transaction) %></li>
 <% end %>
 </ul>
 

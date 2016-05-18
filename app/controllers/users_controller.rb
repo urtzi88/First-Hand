@@ -6,10 +6,17 @@ class UsersController < ApplicationController
     @user = current_user
     @transactions = current_user.transactions.order(id: :asc)
     if @user.type == "Client"
-      render 'users/profile'
+      render 'users/client_profile'
     elsif @user.type == "Provider"
       render 'users/provider'
     end
+  end
+
+  def search
+    @provider = Provider.new
+    @user = current_user
+    @transactions = current_user.transactions.order(id: :asc)
+    render 'users/client_search'
   end
 
   def provider_list
