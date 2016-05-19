@@ -2,7 +2,7 @@ function createProviderBox(provider) {
     var transNumber = countTransactionsForCurrentUser(provider);
     var html = '<div class="box is-fullwidth"><article class="media">' +
         '<div class="media-left"><figure class="image is-128x128">' +
-        '<img src="/system/providers/avatars/000/000/0' + provider.id + '/medium/' + provider.avatar_file_name + '" alt="avatar"></figure></div>' +
+        '<img src="' + provider.avatar_url + '" alt="avatar"></figure></div>' +
         '<div class="media-content"><div class="content">' +
         '<h1 class="title is-3">' + provider.name + ' ' + provider.surname + '</h1>' +
         '<div class="columns"><div class="column is-half">' +

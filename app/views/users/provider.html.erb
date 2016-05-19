@@ -12,7 +12,6 @@
       <p>Service: <%= get_service_name(@user.service_id) %></p>
       <p>Price: <%= @user.price_per_hour %></p>
       <%= link_to "Edit details", edit_user_registration_path, class: "button is-primary is-small" %>
-      <%= link_to "See all index", users_index_path, class: "button is-primary is-small" %>
     </div>
     <div class="box client-requests">
       <%= render "transactions_index" %>

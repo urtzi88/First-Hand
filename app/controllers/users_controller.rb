@@ -1,15 +1,19 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: :profile
 
   def profile
-    @provider = Provider.new
-    @transaction = Transaction.new
-    @user = current_user
-    @transactions = current_user.transactions.order(id: :asc)
-    if @user.type == "Client"
-      render 'users/client_profile'
-    elsif @user.type == "Provider"
-      render 'users/provider'
+    if user_signed_in?
+      @provider = Provider.new
+      @transaction = Transaction.new
+      @user = current_user
+      @transactions = current_user.transactions.order(id: :asc)
+      if @user.type == "Client"
+        render 'users/client_profile'
+      elsif @user.type == "Provider"
+        render 'users/provider'
+      end
+    else
+      render 'application/landing'
     end
   end
 

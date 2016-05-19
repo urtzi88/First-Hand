@@ -54,6 +54,27 @@
     <% else %>
       <div class="box js-pending-transactions is-hidden">
     <% end %>
+
+      <%= render partial: "card", locals: {
+                        transactions: @transactions,
+                        status: "Pending",
+                        buttons: {
+                          good: {
+                            class: "",
+                            text:"Accept Service",
+                            to: "Accepted"
+                          },
+                          medium: {
+                            class: "is-hidden",
+                            text: "",
+                            to: ""
+                          },
+                          bad: {
+                            class: "",
+                            text: "Reject Service",
+                            to: "Rejected"
+                          }}} %>
+
       <div class="columns">
         <h1 class="title is-3">Pending Services:</h1>
       </div>

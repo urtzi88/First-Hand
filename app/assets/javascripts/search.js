@@ -1,8 +1,11 @@
 $(function() {
-    $.get({
-        url: '/provider_list'
-    })
-    .done(showData)
+    //only show all the providers list on the search page
+    if($('body').find('.filter-results').length > 0) {
+        $.get({
+            url: '/provider_list'
+        })
+        .done(showData)
+    }
 
     $('.js-filter-form').on('submit', function(event) {
         event.preventDefault();

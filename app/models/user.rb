@@ -13,13 +13,19 @@ class User < ActiveRecord::Base
     %w(Client Provider)
   end
 
+  def avatar_url
+    avatar.url(:medium)
+  end
+
   def as_json(options={})
     if self.type == "Client"
       super(except: [:created_at, :updated_at],
-            include: [:transactions])
+            include: [:transactions],
+            methods: [:avatar_url])
     else
       super(except: [:created_at, :updated_at],
-            include: [:service, :transactions])
+            include: [:service, :transactions],
+            methods: [:avatar_url])
     end
   end
 end

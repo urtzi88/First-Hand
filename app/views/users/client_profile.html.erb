@@ -10,7 +10,6 @@
       <p>Address: <%= @user.address %></p>
       <p>Type: <%= @user.type %></p>
       <%= link_to "Edit details", edit_user_registration_path, class: "button is-primary is-small" %>
-      <%= link_to "See all index", users_index_path, class: "button is-primary is-small" %>
       <%= link_to "Search", client_search_path(@user), class: "button is-primary is-small" %>
     </div>
     <div class="box client-requests">

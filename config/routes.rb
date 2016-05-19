@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
+  root to: 'users#profile'
   devise_for :users
 
   resources :users, only: [] do
-    resources :transactions
+    resources :transactions, only: [:create, :update]
   end
 
   patch '/users/:user_id/transactions/:id/feedback', to: 'transactions#feedback', as: :transaction_feedback
@@ -15,5 +16,4 @@ Rails.application.routes.draw do
 
   get '/users_index', to: 'tests#index', as: :users_index
   get '/profile', to: 'users#profile'
-  root to: 'users#profile'
 end
