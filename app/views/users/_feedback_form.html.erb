@@ -1,17 +1,15 @@
-<%= form_for(transaction, url: user_transaction_path(user_id: transaction.provider_id, id: transaction.id), method: :patch, html:{class: "js-feedback-form is-hidden"}) do |f| %>
+<%= form_for(transaction, url: user_transaction_path(user_id: transaction.provider_id, id: transaction.id), method: :patch, html:{class: "js-feedback-form"}) do |f| %>
 
   <p class="title is-4">Feedback:</p>
 
   <p class="control">
     <%= f.label :client_rating, "Rating:" %><br/>
-    <%= label_tag(:client_rating_0, "0", class: "is-rating-label") %>
     <%= label_tag(:client_rating_1, "1", class: "is-rating-label") %>
     <%= label_tag(:client_rating_1, "2", class: "is-rating-label") %>
     <%= label_tag(:client_rating_1, "3", class: "is-rating-label") %>
     <%= label_tag(:client_rating_1, "4", class: "is-rating-label") %>
     <%= label_tag(:client_rating_1, "5", class: "is-rating-label") %>
     <br/>
-    <%= radio_button_tag(:client_rating, 0) %>
     <%= radio_button_tag(:client_rating, 1) %>
     <%= radio_button_tag(:client_rating, 2) %>
     <%= radio_button_tag(:client_rating, 3) %>

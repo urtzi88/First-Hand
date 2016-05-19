@@ -14,8 +14,13 @@ class User < ActiveRecord::Base
   end
 
   def as_json(options={})
-    super(except: [:created_at, :updated_at],
-          include: [:service, :transactions])
+    if self.type == "Client"
+      super(except: [:created_at, :updated_at],
+            include: [:transactions])
+    else
+      super(except: [:created_at, :updated_at],
+            include: [:service, :transactions])
+    end
   end
 end
 

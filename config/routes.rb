@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   end
 
   patch '/users/:user_id/transactions/:id/feedback', to: 'transactions#feedback', as: :transaction_feedback
+  patch '/users/feedback', to: 'users#update_user_rating'
 
   get '/client/:client_id/search', to: 'users#search', as: :client_search
 

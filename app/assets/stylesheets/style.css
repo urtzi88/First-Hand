@@ -44,3 +44,7 @@ p.buttons-fix .button {
     width: 12px;
     text-align: center;
 }
+
+p.title.has-no-bottom-margin {
+    margin-bottom: 0;
+}

@@ -1,0 +1,28 @@
+<%= form_for(transaction, url: user_transaction_path(user_id: transaction.provider_id, id: transaction.id), method: :patch, html:{class: "js-feedback-form"}) do |f| %>
+
+  <p class="title is-4">Feedback:</p>
+
+  <p class="control">
+    <%= f.label :provider_rating, "Rating:" %><br/>
+    <%= label_tag(:provider_rating_1, "1", class: "is-rating-label") %>
+    <%= label_tag(:provider_rating_1, "2", class: "is-rating-label") %>
+    <%= label_tag(:provider_rating_1, "3", class: "is-rating-label") %>
+    <%= label_tag(:provider_rating_1, "4", class: "is-rating-label") %>
+    <%= label_tag(:provider_rating_1, "5", class: "is-rating-label") %>
+    <br/>
+    <%= radio_button_tag(:provider_rating, 1) %>
+    <%= radio_button_tag(:provider_rating, 2) %>
+    <%= radio_button_tag(:provider_rating, 3) %>
+    <%= radio_button_tag(:provider_rating, 4) %>
+    <%= radio_button_tag(:provider_rating, 5) %>
+  </p>
+
+  <p class="control">
+    <%=  f.text_area :provider_feedback, placeholder: "Feedback", class: "textarea" %>
+  </p>
+
+  <p class="control">
+    <%= f.submit "Send", class: "button is-primary", data_transaction: transaction.id, data_provider: current_user.id %>
+  </p>
+
+<% end %>

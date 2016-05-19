@@ -1,13 +1,5 @@
 class TransactionsController < ApplicationController
 
-  def index
-
-  end
-
-  def new
-
-  end
-
   def create
     provider = Provider.find(params[:user_id])
     transaction = provider.transactions.create(
@@ -42,12 +34,5 @@ class TransactionsController < ApplicationController
     end
     render json: transaction
   end
-
-  # def destroy
-  #   provider = Provider.find(params[:user_id])
-  #   transaction = provider.transactions.find(params[:id])
-  #   transaction.destroy
-  #   render json: transaction
-  # end
 
 end

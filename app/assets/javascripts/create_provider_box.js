@@ -1,5 +1,5 @@
 function createProviderBox(provider) {
-    var button = generateButton(provider);
+    var transNumber = countTransactionsForCurrentUser(provider);
     var html = '<div class="box is-fullwidth"><article class="media">' +
         '<div class="media-left"><figure class="image is-128x128">' +
         '<img src="/system/providers/avatars/000/000/0' + provider.id + '/medium/' + provider.avatar_file_name + '" alt="avatar"></figure></div>' +
@@ -12,11 +12,12 @@ function createProviderBox(provider) {
         '</div><div class="column is-half">' +
         '<p><strong>Service: </strong>' + provider.service.name + '</p>' +
         '<p><strong>Price: </strong>' + provider.price_per_hour + '$ \/ hour</p>' +
+        '<p><strong>Previous services: </strong>' + transNumber + '</p>' +
         '</div></div><div class="columns"><div class="column is-half">' +
         '<p><strong>Email: </strong>' + provider.email + '</p>' +
         '<p><strong>Phone Number: </strong>' + provider.phone_number + '</p>' +
         '</div><div class="column is-half">' +
-        button +
+        '<button class="button is-primary js-request-service" data-prov="' + provider.id + '" data-id="">Request service</button>' +
         '<div class="date-and-time hidden">' +
         '<div class="user-date">' +
         '<label for="service_date">Select desired date: </label><br>' +
@@ -31,13 +32,13 @@ function createProviderBox(provider) {
     return(html);
 }
 
-function generateButton(provider) {
-    var button = '<button class="button is-primary js-request-service" data-prov="' + provider.id + '" data-id="">Request service</button>'
+function countTransactionsForCurrentUser(provider) {
+    var transNumber = 0;
     provider.transactions.forEach(function(transaction) {
         var current_user_id = $('#user-id').attr('data');
-        if( current_user_id == transaction.client_id){
-            button = '<button class="button is-danger js-cancel-service" data-prov="' + provider.id + '" data-id="' + transaction.id + '">Cancel service</button>'
+        if(current_user_id == transaction.client_id) {
+            transNumber ++;
         }
     });
-    return button;
+    return transNumber;
 }

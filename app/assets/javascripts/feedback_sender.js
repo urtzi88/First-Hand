@@ -2,7 +2,7 @@ $(function() {
 
     $('.js-service-wrapper').delegate('.js-feedback-provider', 'click', function(event) {
         event.preventDefault();
-        var form = $(event.currentTarget).siblings('.js-feedback-form')
+        var form = $(event.currentTarget).siblings('.js-form-container')
         form.removeClass('is-hidden');
         $(event.currentTarget).addClass('is-hidden');
     });
@@ -14,8 +14,8 @@ $(function() {
         var feedback = $(event.currentTarget).children('.control').children('textarea').val();
         var transaction = $(event.currentTarget).children('.control').children('.button').attr('data_transaction');
         var provider = $(event.currentTarget).children('.control').children('.button').attr('data_provider');
-        console.log(provider);
-        console.log(transaction);
+        console.log(rating);
+        console.log(feedback);
         updateFeedbackOnTransaction(rating, feedback, transaction, provider, form);
     });
 
@@ -29,14 +29,31 @@ $(function() {
             method: 'PATCH',
             url: '/users/' + user + '/transactions/' + transaction + '/feedback',
             data: {rat_feed: pro_feed},
-            success: updateDomFeedback.bind(form)
+            success: updateDomFeedback.bind(form),
         })
     }
 
     function updateDomFeedback(data) {
-        console.log(data)
+
         $(this.srcElement).addClass('is-hidden');
-        $(this.srcElement).siblings('.js-feedback-provider').removeClass('is-hidden').addClass('is-disabled');
+        $(this.srcElement.parentNode).siblings('.js-feedback-provider').removeClass('is-hidden').addClass('is-disabled');
+        var rating = {
+            client_rating: data.client_rating,
+            provider_rating: data.provider_rating
+        };
+        console.log(rating);
+        $.ajax({
+            method: 'PATCH',
+            url: '/users/feedback',
+            data: {
+                rating: rating,
+                client: data.client_id,
+                provider: data.provider_id
+            },
+            success: function(data) {
+                console.log(data);
+            }
+        })
     }
 
 });

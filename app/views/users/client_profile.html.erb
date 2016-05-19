@@ -3,6 +3,7 @@
     <div class="box user-details">
       <%= image_tag @user.avatar.url(:medium) %>
       <p>CLIENT: <%= @user.name %></p>
+      <p>Rating: <%= @user.average_rating %>(<%= @user.rating_amount %>)</p>
       <p>Id: <%= @user.id %></p>
       <p>Email: <%= @user.email %></p>
       <p>Number: <%= @user.phone_number %></p>
