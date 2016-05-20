@@ -11,5 +11,16 @@ require 'rails_helper'
 #   end
 # end
 RSpec.describe UsersHelper, type: :helper do
-  pending "add some examples to (or delete) #{__FILE__}"
+
+  describe 'pending_to_show?(transactions)' do
+    before :each do
+      create( :pending_transaction )
+    end
+
+    pending 'returns true if the status of the transaction is Pending' do
+      expect(pending_to_show?(:pending_transaction)).to be(true)
+    end
+
+  end
+
 end
