@@ -2,9 +2,9 @@ function createProviderBox(provider) {
     var transNumber = countTransactionsForCurrentUser(provider);
     var html = '<div class="box is-fullwidth"><article class="media">' +
         '<div class="media-left"><figure class="image is-128x128">' +
-        '<img src="' + provider.avatar_url + '" alt="avatar"></figure></div>' +
-        '<div class="media-content"><div class="content">' +
-        '<h1 class="title is-3">' + provider.name + ' ' + provider.surname + '</h1>' +
+        '<img class="search-avatar-user" src="' + provider.avatar_url + '" alt="avatar"></figure></div>' +
+        '<div class="media-content"><div class="content provider-box-content">' +
+        '<h1 class="title is-3">' + provider.name + ' ' + provider.surname + ' ' + provider.average_rating + '(' + provider.rating_amount + ')' + '</h1>' +
         '<div class="columns"><div class="column is-half">' +
         '<p><strong>Address: </strong>' + provider.address + '</p>' +
         '<p><strong>Postcode: </strong>' + provider.postcode + '</p>' +
@@ -17,7 +17,7 @@ function createProviderBox(provider) {
         '<p><strong>Email: </strong>' + provider.email + '</p>' +
         '<p><strong>Phone Number: </strong>' + provider.phone_number + '</p>' +
         '</div><div class="column is-half">' +
-        '<button class="button is-primary js-request-service" data-prov="' + provider.id + '" data-id="">Request service</button>' +
+        '<button class="button js-request-service" data-prov="' + provider.id + '" data-id="">Request service</button>' +
         '<div class="date-and-time hidden">' +
         '<div class="user-date">' +
         '<label for="service_date">Select desired date: </label><br>' +
@@ -26,7 +26,7 @@ function createProviderBox(provider) {
         '<label for="service_time">Select desired time: </label><br>' +
         '<input id="user-time" type="time" name="service_time">' +
         '</div><div class="user-datetime-send">' +
-        '<button class="js-send-request button is-primary" data-prov="' + provider.id + '">Send</button>' +
+        '<button class="js-send-request button" data-prov="' + provider.id + '">Send</button>' +
         '</div></div></div></div></div></div></div></div></article></div>';
 
     return(html);

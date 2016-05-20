@@ -1,22 +1,30 @@
-<div class="columns">
-  <h1 class="title is-3"><%= status %> Services:</h1>
-</div>
-<div class="columns is-wrapped js-pending-services">
+<% box_class = "js-" + status.downcase + "-services" %>
+<% if status == "Complete" %>
+  <% buttons_class = "js-feedback-provider" %>
+<% else %>
+  <% buttons_class = "js-action-service-" + current_user.type.downcase %>
+<% end %>
+<div class="columns is-wrapped <%= box_class %>">
   <% transactions.each do |transaction| %>
-    <% if transaction.provider_status == "Pending" && transaction.client_status == "Requested" %>
-      <% client = get_client(transaction.client_id) %>
+    <% if get_status_cond(status, transaction) && get_feedback_condition(logic, transaction) %>
+      <% if current_user.type == "Client" %>
+        <% user = get_provider(transaction.provider_id) %>
+      <% else %>
+        <% user = get_client(transaction.client_id) %>
+      <% end %>
       <div class="column is-half is-hosting-a-card">
-        <div class="card is-fullwidth">
+        <div class="card is-fullwidth is-custom-card">
           <div class="card-content">
             <div class="media">
               <div class="media-left">
                 <figure class="image is-64x64">
-                  <%= image_tag client.avatar.url(:thumb) %>
+                  <%= image_tag user.avatar.url(:thumb), class: "user-avatar-thumb" %>
                 </figure>
               </div>
               <div class="media-content">
-                <p class="title is-5"><%= client.name %> <small>Rating:</small> <%= client.average_rating%>(<%= client.rating_amount %>)</p>                      <p class="subtitle is-7 has-no-bottom-margin"><%= client.address %></p>
-                <p class="subtitle is-7"><%= client.postcode %> - <%= client.city %></p>
+                <p class="title is-5"><%= user.name %> <small>Rating:</small> <%= user.average_rating%>(<%= user.rating_amount %>)</p>
+                <p class="subtitle is-7 has-no-bottom-margin"><%= user.address %></p>
+                <p class="subtitle is-7"><%= user.postcode %> - <%= user.city %></p>
               </div>
             </div>
             <div class="content">
@@ -30,9 +38,9 @@
             </div>
           </div>
           <footer class="card-footer">
-            <a class="card-footer-item is-item-good <%= buttons[:good][:class] %>" data-key='{"client":"<%= transaction.client_id %>","provider":"<%= transaction.provider_id %>","transaction":"<%= transaction.id %>","current_status":"<%= status %>","next_status":"<%= buttons[:good][:to] %>"}'><%= buttons[:good][:text] %></a>
-            <a class="card-footer-item is-item-medium <%= buttons[:medium][:class] %>" data-key='{"client":"<%= transaction.client_id %>","provider":"<%= transaction.provider_id %>","transaction":"<%= transaction.id %>","current_status":"<%= status %>","next_status":"<%= buttons[:medium][:to] %>"}'><%= buttons[:medium][:text] %></a>
-            <a class="card-footer-item is-item-bad <%= buttons[:bad][:class] %>" data-key='{"client":"<%= transaction.client_id %>","provider":"<%= transaction.provider_id %>","transaction":"<%= transaction.id %>","current_status":"<%= status %>","next_status":"<%= buttons[:bad][:to] %>"}'><%= buttons[:bad][:text] %></a>
+            <a class="card-footer-item is-item-good <%= buttons[:good][:class] %> <%= buttons_class %>" data-key='{"client":"<%= transaction.client_id %>","provider":"<%= transaction.provider_id %>","transaction":"<%= transaction.id %>","current_status":"<%= status %>","next_status":"<%= buttons[:good][:to] %>","client_status":"<%= transaction.client_status %>"}'><%= buttons[:good][:text] %></a>
+            <a class="card-footer-item is-item-medium <%= buttons[:medium][:class] %> <%= buttons_class %>" data-key='{"client":"<%= transaction.client_id %>","provider":"<%= transaction.provider_id %>","transaction":"<%= transaction.id %>","current_status":"<%= status %>","next_status":"<%= buttons[:medium][:to] %>","client_status":"<%= transaction.client_status %>"}'><%= buttons[:medium][:text] %></a>
+            <a class="card-footer-item is-item-bad <%= buttons[:bad][:class] %> <%= buttons_class %>" data-key='{"client":"<%= transaction.client_id %>","provider":"<%= transaction.provider_id %>","transaction":"<%= transaction.id %>","current_status":"<%= get_status_for_archived_button(status) %>","next_status":"<%= buttons[:bad][:to] %>","client_status":"<%= transaction.client_status %>"}'><%= buttons[:bad][:text] %></a>
           </footer>
         </div>
       </div>

@@ -1,10 +1,9 @@
-.hidden {
-    display: none;
+div.box {
+    border-radius: 0 !important;
 }
 
-.container.is-user {
-    max-width: 100%;
-    margin: 0;
+.hidden {
+    display: none;
 }
 
 .filter-form {

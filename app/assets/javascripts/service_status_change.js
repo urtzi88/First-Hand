@@ -1,28 +1,34 @@
 $(function() {
     $('.js-service-wrapper').delegate('.js-action-service-provider', 'click', function(event) {
         event.preventDefault();
-        var user_id = $(event.currentTarget).data('client');
-        var transaction_id = $(event.currentTarget).data('transaction');
-        var status = {
-            provider_status: $(event.currentTarget).data('status'),
-            client_status: "",
-            current_status: $(event.currentTarget).data('current')
+        var confirmation = confirm("Are you sure?");
+        if(confirmation) {
+            var user_id = $(event.currentTarget).data('key').provider;
+            var transaction_id = $(event.currentTarget).data('key').transaction;
+            var status = {
+                provider_status: $(event.currentTarget).data('key').next_status,
+                client_status: $(event.currentTarget).data('key').client_status,
+                current_status: $(event.currentTarget).data('key').current_status
+            }
+            var button = event.currentTarget;
+            ajaxQuery(user_id, transaction_id, status, button);
         }
-        var button = event.currentTarget;
-        ajaxQuery(user_id, transaction_id, status, button);
     });
 
     $('.js-service-wrapper').delegate('.js-action-service-client', 'click', function(event) {
         event.preventDefault();
-        var user_id = $(event.currentTarget).data('provider');
-        var transaction_id = $(event.currentTarget).data('transaction');
-        var status = {
-            provider_status: $(event.currentTarget).data('prov-status'),
-            client_status: $(event.currentTarget).data('status'),
-            current_status: $(event.currentTarget).data('current')
+        var confirmation = confirm("Are you sure?");
+        if(confirmation) {
+            var user_id = $(event.currentTarget).data('key').provider;
+            var transaction_id = $(event.currentTarget).data('key').transaction;
+            var status = {
+                provider_status: $(event.currentTarget).data('key').next_status,
+                client_status: $(event.currentTarget).data('key').client_status,
+                current_status: $(event.currentTarget).data('key').current_status
+            }
+            var button = event.currentTarget;
+            ajaxQuery(user_id, transaction_id, status, button);
         }
-        var button = event.currentTarget;
-        ajaxQuery(user_id, transaction_id, status, button);
     });
 
     function ajaxQuery(user, transaction, status, button) {
@@ -43,22 +49,20 @@ $(function() {
     }
 
     function modifyDomServices(data) {
-        var prov_status = this.status.provider_status;
-        var cli_status = this.status.client_status;
-        var current_status = this.status.current_status;
+        var status = this.status;
         var button = this.button;
-        if(prov_status == "Accepted" && cli_status == '') {
-            moveToApproved(data, current_status, button);
-        } else if (prov_status == "Complete" && cli_status == '') {
-            moveToComplete(data, current_status, button);
-        } else if (prov_status == "Pending" && cli_status == '') {
-            moveToPending(data, current_status, button);
-        } else if (prov_status == "Rejected" && cli_status == '') {
-            moveToRejected(data, current_status, button);
-        } else if (cli_status == "Cancelled") {
-            moveToCancelled(data, prov_status, current_status, button);
-        } else if (cli_status == "Requested") {
-            moveBackFromCancelled(data, prov_status, cli_status, current_status, button);
+        if(status.provider_status == "Accepted" && status.client_status != 'Cancelled') {
+            moveToAccepted(data, status, button);
+        } else if (status.provider_status == "Complete" && status.client_status != 'Cancelled') {
+            moveToComplete(data, status, button);
+        } else if (status.provider_status == "Pending" && status.client_status != 'Cancelled') {
+            moveToPending(data, status, button);
+        } else if (status.provider_status == "Rejected" && status.client_status != 'Cancelled') {
+            moveToRejected(data, status, button);
+        } else if (status.client_status == "Requested") {
+            moveToCancelled(data, status, button);
+        } else if (status.client_status == "Cancelled") {
+            moveBackFromCancelled(data, status, button);
         }
     }
 
@@ -69,11 +73,24 @@ $(function() {
         }
     }
 
-    function moveToApproved(data, status, button) {
+    function fixButtonAttr(button, current_status, next_status, client_status) {
+        var data_attr = $(button).data('key');
+        data_attr.current_status = current_status;
+        data_attr.next_status = next_status;
+        data_attr.client_status = client_status;
+        return data_attr;
+    }
+
+    function moveToAccepted(data, status, button) {
         var card = $(button).closest('.is-hosting-a-card');
-        $(button).removeClass('is-hidden').attr('data-status', 'Complete').attr('data-current', 'Accepted').text('Mark as complete');
-        $(button).siblings('[data-color="red"]').removeClass('is-hidden').attr('data-current', 'Accepted').attr('data-status', 'Rejected').text('Reject service');
-        $(button).siblings('[data-color="blue"]').removeClass('is-hidden').attr('data-current', 'Accepted').attr('data-status', 'Pending').text('Pend service');
+        var data_attr = fixButtonAttr(button, "Accepted", "Complete", status.client_status);
+        $(button).removeClass('is-hidden').attr('data-key',JSON.stringify(data_attr)).text('Mark as Complete');
+        var medium_button = $(button).siblings('.is-item-medium');
+        data_attr = fixButtonAttr(medium_button, "Accepted", "Pending", status.client_status);
+        medium_button.removeClass('is-hidden').attr('data-key',JSON.stringify(data_attr)).text('Pend Service');
+        var bad_button = $(button).siblings('.is-item-bad');
+        data_attr = fixButtonAttr(bad_button, "Accepted", "Rejected", status.client_status);
+        bad_button.removeClass('is-hidden').attr('data-key',JSON.stringify(data_attr)).text('Reject Service');
         $('.js-accepted-services').closest('.box').removeClass('is-hidden');
         var card_content = '<div class="column is-half is-hosting-a-card">' + card.html() + '</div>';
         var line_req = $('[data-id=' + data.id + ']');
@@ -81,29 +98,39 @@ $(function() {
         $('.js-accepted-services').append(card_content);
         line_req.remove();
         $('.js-accepted-requests').append(line_req);
-        hidePreviousBox(status);
+        hidePreviousBox(status.current_status);
     }
 
     function moveToComplete(data, status, button) {
         var card = $(button).closest('.is-hosting-a-card');
-        $(button).removeClass('is-hidden js-action-service-provider').addClass('js-feedback-provider').attr('data-status', 'Complete').attr('data-current', 'Complete').text('Give feedback');
-        $(button).siblings('[data-color="red"]').addClass('is-hidden').attr('data-current', 'Complete');
-        $(button).siblings('[data-color="blue"]').addClass('is-hidden').attr('data-current', 'Complete');
+        var data_attr = fixButtonAttr(button, "Complete", "", status.client_status);
+        $(button).removeClass('is-hidden js-action-service-provider').addClass('js-feedback-provider').attr('data-key',JSON.stringify(data_attr)).text('Give Feedback');
+        var medium_button = $(button).siblings('.is-item-medium');
+        data_attr = fixButtonAttr(medium_button, "", "", status.client_status);
+        medium_button.addClass('is-hidden').attr('data-key', JSON.stringify(data_attr));
+        var bad_button = $(button).siblings('.is-item-bad');
+        data_attr = fixButtonAttr(bad_button, "", "", status.client_status);
+        bad_button.addClass('is-hidden').attr('data-key', JSON.stringify(data_attr));
         $('.js-completed-services').closest('.box').removeClass('is-hidden');
         var card_content = '<div class="column is-half is-hosting-a-card">' + card.html() + '</div>';
         var line_req = $('[data-id=' + data.id + ']');
         card.remove();
-        $('.js-completed-services').append(card_content);
+        $('.js-complete-services').append(card_content);
         line_req.remove();
         $('.js-completed-requests').append(line_req);
-        hidePreviousBox(status);
+        hidePreviousBox(status.current_status);
     }
 
     function moveToPending(data, status, button) {
         var card = $(button).closest('.is-hosting-a-card');
-        $(button).siblings('[data-color="green"]').removeClass('is-hidden').attr('data-status', 'Accepted').attr('data-current', 'Pending').text('Accept service');
-        $(button).siblings('[data-color="red"]').removeClass('is-hidden').attr('data-status', 'Rejected').attr('data-current', 'Pending').text('Reject service');
-        $(button).addClass('is-hidden').attr('data-status', '').attr('data-current', 'Pending');
+        var data_attr = fixButtonAttr(button, "", "", status.client_status);
+        $(button).addClass('is-hidden').attr('data-key',JSON.stringify(data_attr));
+        var good_button = $(button).siblings('.is-item-good');
+        data_attr = fixButtonAttr(good_button, "Pending", "Accepted", status.client_status);
+        good_button.removeClass('is-hidden').attr('data-key',JSON.stringify(data_attr)).text('Accept Service');
+        var bad_button = $(button).siblings('.is-item-bad').attr('data-key',JSON.stringify(data_attr));
+        data_attr = fixButtonAttr(bad_button, "Pending", "Rejected", status.client_status);
+        bad_button.removeClass('is-hidden').attr('data-key',JSON.stringify(data_attr)).text('Reject Service');
         $('.js-pending-services').closest('.box').removeClass('is-hidden');
         var card_content = '<div class="column is-half is-hosting-a-card">' + card.html() + '</div>';
         var line_req = $('[data-id=' + data.id + ']');
@@ -111,14 +138,19 @@ $(function() {
         $('.js-pending-services').append(card_content);
         line_req.remove();
         $('.js-pending-requests').append(line_req);
-        hidePreviousBox(status);
+        hidePreviousBox(status.current_status);
     }
 
     function moveToRejected(data, status, button) {
         var card = $(button).closest('.is-hosting-a-card');
-        $(button).siblings('[data-color="green"]').addClass('is-hidden').attr('data-status', '').attr('data-current', 'Rejected');
-        $(button).removeClass('is-hidden').attr('data-status', 'Archived').attr('data-current', 'Rejected').text('Archive');
-        $(button).siblings('[data-color="blue"]').removeClass('is-hidden').attr('data-status', 'Pending').attr('data-current', 'Rejected').text('Pend service');
+        var data_attr = fixButtonAttr(button, "Rejected", "Archived", status.client_status);
+        $(button).removeClass('is-hidden').attr('data-key',JSON.stringify(data_attr)).text('Archive');
+        var good_button = $(button).siblings('.is-item-good');
+        data_attr = fixButtonAttr(good_button, "", "", status.client_status);
+        good_button.addClass('is-hidden').attr('data-key', JSON.stringify(data_attr));
+        var medium_button = $(button).siblings('.is-item-medium');
+        data_attr = fixButtonAttr(medium_button, "Rejected", "Pending", status.client_status);
+        medium_button.removeClass('is-hidden').attr('data-key', JSON.stringify(data_attr)).text('Pend Service');
         $('.js-rejected-services').closest('.box').removeClass('is-hidden');
         var card_content = '<div class="column is-half is-hosting-a-card">' + card.html() + '</div>';
         var line_req = $('[data-id=' + data.id + ']');
@@ -126,12 +158,19 @@ $(function() {
         $('.js-rejected-services').append(card_content);
         line_req.remove();
         $('.js-rejected-requests').append(line_req);
-        hidePreviousBox(status);
+        hidePreviousBox(status.current_status);
     }
 
-    function moveToCancelled(data, prov_st, status, button) {
+    function moveToCancelled(data, status, button) {
         var card = $(button).closest('.is-hosting-a-card');
-        $(button).removeClass('is-danger').addClass('is-primary').data('prov-status', prov_st).attr("data-status", "Requested").attr('data-current', 'Cancelled').text('Restore request');
+        var data_attr = fixButtonAttr(button, status.current_status, "Archived", "Cancelled");
+        $(button).removeClass('is-hidden').attr('data-key',JSON.stringify(data_attr)).text("Archive");
+        var good_button = $(button).siblings('.is-item-good');
+        data_attr = fixButtonAttr(good_button, "Cancelled", status.current_status, "Cancelled");
+        good_button.removeClass('is-hidden').attr('data-key',JSON.stringify(data_attr)).text('Restore Request');
+        var medium_button = $(button).siblings('.is-item-medium');
+        data_attr = fixButtonAttr(medium_button, status.current_status, "", "");
+        medium_button.addClass('is-hidden').attr('data-key',JSON.stringify(data_attr));
         $('.js-cancelled-services').closest('.box').removeClass('is-hidden');
         var card_content = '<div class="column is-half is-hosting-a-card">' + card.html() + '</div>';
         var line_req = $('[data-id=' + data.id + ']');
@@ -139,30 +178,27 @@ $(function() {
         $('.js-cancelled-services').append(card_content);
         line_req.remove();
         $('.js-cancelled-requests').append(line_req);
-        hidePreviousBox(status);
+        hidePreviousBox(status.current_status);
     }
 
-    function moveBackFromCancelled(data, prov_st, cli_st, status, button) {
+    function moveBackFromCancelled(data, status, button) {
         var card = $(button).closest('.is-hosting-a-card');
-        $(button).addClass('is-danger').removeClass('is-primary').attr('data-status', 'Cancelled').attr('data-current', prov_st).text('Cancel request');
+        var data_attr = fixButtonAttr(button, "", "", status.client_status);
+        $(button).addClass('is-hidden').attr('data-key',JSON.stringify(data_attr));
+        var medium_button = $(button).siblings('.is-item-medium');
+        data_attr = fixButtonAttr(medium_button, "", "", status.client_status);
+        medium_button.addClass('is-hidden').attr('data-key',JSON.stringify(data_attr));
+        var bad_button = $(button).siblings('.is-item-bad').attr('data-key',JSON.stringify(data_attr));
+        data_attr = fixButtonAttr(bad_button, "Pending", "Cancelled" , "Requested");
+        bad_button.removeClass('is-hidden').attr('data-key',JSON.stringify(data_attr)).text('Cancel Request');
         var card_content = '<div class="column is-half is-hosting-a-card">' + card.html() + '</div>';
         var line_req = $('[data-id=' + data.id + ']');
         card.remove();
         line_req.remove();
-        if(prov_st == "Pending") {
-            $('.js-pending-services').closest('.box').removeClass('is-hidden');
-            $('.js-pending-services').append(card_content);
-            $('.js-pending-requests').append(line_req);
-        } else if (prov_st == "Accepted") {
-            $('.js-accepted-services').closest('.box').removeClass('is-hidden');
-            $('.js-accepted-services').append(card_content);
-            $('.js-accepted-requests').append(line_req);
-        } else if (prov_st == "Rejected") {
-            $('.js-rejected-services').closest('.box').removeClass('is-hidden');
-            $('.js-rejected-services').append(card_content);
-            $('.js-rejected-requests').append(line_req);
-        }
-        hidePreviousBox(status);
+        $('.js-pending-services').closest('.box').removeClass('is-hidden');
+        $('.js-pending-services').append(card_content);
+        $('.js-pending-requests').append(line_req);
+        hidePreviousBox(status.current_status);
     }
 
 });

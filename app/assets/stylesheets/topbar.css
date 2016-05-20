@@ -1,0 +1,18 @@
+h1.is-main {
+    font-family: 'Shadows Into Light Two', cursive;
+    color: #ecf0f1;
+}
+
+.container.is-user {
+    max-width: 100%;
+    margin: 0;
+}
+
+.container.is-user .hero {
+    background-color: #c0392b;
+}
+
+.hero span,
+.hero .nav-item {
+    color: #ecf0f1;
+}

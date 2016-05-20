@@ -1,0 +1,49 @@
+a.is-search-button {
+    font-family: 'Quicksand', sans-serif;
+    font-weight: bolder;
+    display: block;
+    width: 100%;
+    height: 50px !important;
+    background-color: #c0392b !important;
+    margin-top: 24px;
+    color: #ecf0f1;
+    font-size: 2em;
+    line-height: 50px;
+    border: 0;
+    border-radius: 0;
+}
+
+a.is-search-button:hover {
+    background-color: #e74c3c !important;
+    color: #ecf0f1;
+}
+
+.user-avatar-medium {
+    border-radius: 10px;
+}
+
+.user-details .title span {
+    font-size: 0.7em;
+    line-height: 1.5em;
+}
+
+.personal-details {
+    margin: 10px;
+}
+
+.user-detail-controls {
+    display: block;
+    width: 100%;
+}
+
+.user-detail-controls a {
+    display: inline-block;
+    width: 100%;
+    border-radius: 0;
+    line-height: 30px;
+    background-color: #c0392b !important;
+}
+
+.user-detail-controls a:hover {
+    background-color: #e74c3c !important;
+}

@@ -2,7 +2,7 @@ $(function() {
 
     $('.js-service-wrapper').delegate('.js-feedback-provider', 'click', function(event) {
         event.preventDefault();
-        var form = $(event.currentTarget).siblings('.js-form-container')
+        var form = $(event.currentTarget).closest('.card').children('.card-content').children('.content').children('.js-form-container');
         form.removeClass('is-hidden');
         $(event.currentTarget).addClass('is-hidden');
     });
@@ -36,7 +36,8 @@ $(function() {
     function updateDomFeedback(data) {
 
         $(this.srcElement).addClass('is-hidden');
-        $(this.srcElement.parentNode).siblings('.js-feedback-provider').removeClass('is-hidden').addClass('is-disabled');
+        var feedback_btn = $(this.srcElement.parentNode.parentNode.parentNode.parentNode).children('footer').children('.is-item-good');
+        feedback_btn.removeClass('is-hidden').addClass('is-disabled');
         var rating = {
             client_rating: data.client_rating,
             provider_rating: data.provider_rating

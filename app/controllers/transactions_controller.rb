@@ -11,16 +11,16 @@ class TransactionsController < ApplicationController
   end
 
   def update
-    user = User.find(params[:user_id])
-    transaction = user.transactions.find(params[:id])
-    provider_status = params[:status][:provider_status]
-    client_status = params[:status][:client_status]
-    if provider_status.blank? && client_status.present?
-      transaction.update(client_status: client_status)
-    elsif client_status.blank? && provider_status.present?
-      transaction.update(provider_status: provider_status)
-    elsif client_status.present? && provider_status.present?
-      transaction.update(provider_status: provider_status, client_status: client_status)
+    transaction = Transaction.find(params[:id])
+    status = params[:status][:provider_status]
+    if current_user.type == "Client"
+      if status == "Cancelled" || status == "Requested"
+        transaction.update(client_status: status)
+      else
+        transaction.update(client_status: "Requested", provider_status: "Pending")
+      end
+    elsif current_user.type == "Provider"
+      transaction.update(provider_status: status)
     end
     render json: transaction
   end

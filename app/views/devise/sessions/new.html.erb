@@ -1,14 +1,18 @@
 <div class="coulmns">
   <div class="column is-half is-offset-one-quarter">
-    <h2 class="title is-1">Log in</h2>
+    <h2 class="title is-1 is-main">Log in</h2>
+
+    <% if flash[:alert] %>
+      <p class="flash-alert"><%= flash[:alert] %></p>
+    <% end %>
 
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <p class="control">
-        <%= f.email_field :email, autofocus: true, placeholder: "Email", class: "input" %>
+        <%= f.email_field :email, autofocus: true, placeholder: "Email", class: "input is-red" %>
       </p>
 
       <p class="control">
-        <%= f.password_field :password, autocomplete: "off", placeholder: "Password", class: "input" %>
+        <%= f.password_field :password, autocomplete: "off", placeholder: "Password", class: "input is-red" %>
       </p>
 
       <% if devise_mapping.rememberable? -%>

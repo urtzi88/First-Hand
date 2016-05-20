@@ -1,3 +1,4 @@
+<div class="search-form-user">
 <%= form_for @provider, url: ('/users_index'), html: {class: "js-filter-form"} do |f| %>
       <%= f.label :service_id %>
       <span class="select">
@@ -14,5 +15,10 @@
       </select>
     </span>
 
+    <span class="select">
+      <%= select_tag(:providers, options_for_select([['Price asc', 1],['Price desc', 2]])) %>
+    </span>
+
     <%= f.submit "Filter", class: "button is-primary" %>
 <% end %>
+</div>

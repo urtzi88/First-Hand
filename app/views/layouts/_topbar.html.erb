@@ -1,19 +1,26 @@
-<div class="hero hero-fullwidth">
+<div class="hero">
   <div class="hero-head">
     <header class="nav">
-      <span id="header-toggle" class="nav-toggle">
-        <span></span>
-        <span></span>
-        <span></span>
-      </span>
-      <div id="top-nav" class="nav-right nav-menu">
-        <% if user_signed_in? %>
-            <%= link_to 'My profile',  profile_path, class: "nav-item",id: "user-id" , data: current_user.id %>
-            <%= link_to 'Logout', destroy_user_session_path, :method => :delete, class: "nav-item" %>
-        <% else %>
-            <%= link_to 'Login', new_user_session_path, class: "nav-item" %>
-            <%= link_to 'Register', new_user_registration_path, class: "nav-item" %>
-        <% end %>
+      <div class="container">
+        <div class="nav-left">
+          <a class="nav-item">
+            <h1 class="title is-main">first hand</h1>
+          </a>
+        </div>
+        <span id="header-toggle" class="nav-toggle">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+        <div id="top-nav" class="nav-right nav-menu">
+          <% if user_signed_in? %>
+              <%= link_to 'My profile',  profile_path, class: "nav-item",id: "user-id" , data: current_user.id %>
+              <%= link_to 'Logout', destroy_user_session_path, :method => :delete, class: "nav-item" %>
+          <% else %>
+              <%= link_to 'Login', new_user_session_path, class: "nav-item" %>
+              <%= link_to 'Register', new_user_registration_path, class: "nav-item" %>
+          <% end %>
+        </div>
       </div>
     </header>
   </div>

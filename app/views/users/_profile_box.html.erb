@@ -1,0 +1,16 @@
+<div class="box user-details">
+  <p class="title"><%= @user.name %> <span class="pull-right"><%= @user.average_rating %>(<%= @user.rating_amount %>)</span></p>
+  <%= image_tag @user.avatar.url(:medium), class: "user-avatar-medium" %>
+  <div class="personal-details">
+    <p><strong>Email:</strong> <%= @user.email %></p>
+    <p><strong>Number:</strong> <%= @user.phone_number %></p>
+    <p><strong>Address:</strong> <%= @user.address %></p>
+    <% if current_user.type == "Provider" %>
+      <p><strong>Service:</strong> <%= get_service_name(@user.service_id) %></p>
+      <p><strong>Price:</strong> <%= @user.price_per_hour %>$ / hour</p>
+    <% end %>
+  </div>
+  <div class="user-detail-controls">
+    <%= link_to "Edit details", edit_user_registration_path, class: "button is-primary" %>
+  </div>
+</div>

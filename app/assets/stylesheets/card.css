@@ -1,0 +1,71 @@
+.user-avatar-thumb {
+    border-radius: 5px;
+}
+
+.is-card-title {
+    font-family: 'Quicksand', sans-serif;
+}
+
+.is-custom-card {
+    box-shadow: 0 1px 2px rgba(0,0,0,.5) !important;
+}
+
+.is-custom-card .card-content {
+    background-color: #fff;
+}
+
+.card-footer-item {
+    border: 0 !important;
+}
+
+.is-item-good {
+    background-color: rgba(39, 174, 96, .7);
+    color: #ecf0f1;
+    border: 1px solid rgba(39, 174, 96, .7);
+}
+
+.is-item-medium {
+    background-color: rgba(211, 84, 0, .7);
+    color: #ecf0f1;
+    border: 1px solid rgba(211, 84, 0, .7);
+}
+
+.is-item-bad {
+    background-color: rgba(192, 57, 43, .7);
+    color: #ecf0f1;
+    border: 1px solid rgba(192, 57, 43, .7);
+}
+
+.is-item-good:hover {
+    background-color: rgba(39, 174, 96, 1);
+    color: #ecf0f1;
+    border: 1px solid rgba(39, 174, 96, 1);
+}
+
+.is-item-medium:hover {
+    background-color: rgba(211, 84, 0, 1);
+    color: #ecf0f1;
+    border: rgba(211, 84, 0, 1);
+}
+
+.is-item-bad:hover {
+    background-color: rgba(192, 57, 43, 1);
+    color: #ecf0f1;
+    border: rgba(192, 57, 43, 1);
+}
+
+input[type=submit].is-feedback-button {
+    background-color: rgba(39, 174, 96, .7);
+    width: 100%;
+    text-align: center;
+    border-radius: 0;
+    color: #ecf0f1;
+}
+
+input[type=submit].is-feedback-button:hover {
+    background-color: rgba(39, 174, 96, 1);
+    width: 100%;
+    text-align: center;
+    border-radius: 0;
+    color: #ecf0f1;
+}

@@ -84,4 +84,35 @@ module UsersHelper
     condition
   end
 
+  def get_feedback_condition(logic, transaction)
+    feedback = true
+    if logic[:feedback] && logic[:user] == "Provider"
+      if transaction.provider_rating.present?
+        feedback = false
+      end
+    elsif logic[:feedback] && logic[:user] == "Client"
+      if transaction.client_rating.present?
+        feedback = false
+      end
+    end
+    feedback
+  end
+
+  def get_status_cond(status, transaction)
+    if status == transaction.provider_status && transaction.client_status != "Cancelled"
+      true
+    elsif status == transaction.client_status
+      true
+    else
+      false
+    end
+  end
+
+  def get_status_for_archived_button(status)
+    if status == "Cancelled" && current_user.type == "Client"
+      status = "Pending"
+    end
+    status
+  end
+
 end
