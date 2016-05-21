@@ -18,13 +18,13 @@ function createProviderBox(provider) {
         '<p><strong>Phone Number: </strong>' + provider.phone_number + '</p>' +
         '</div><div class="column is-half">' +
         '<button class="button js-request-service" data-prov="' + provider.id + '" data-id="">Request service</button>' +
-        '<div class="date-and-time hidden">' +
+        '<div class="date-and-time is-hidden">' +
         '<div class="user-date">' +
         '<label for="service_date">Select desired date: </label><br>' +
-        '<input id="user-date" type="date" name="service_date">' +
+        '<input id="user-date" type="text" name="service_date">' +
         '</div><div class="user-time">' +
         '<label for="service_time">Select desired time: </label><br>' +
-        '<input id="user-time" type="time" name="service_time">' +
+        '<input id="user-time" type="text" name="service_time">' +
         '</div><div class="user-datetime-send">' +
         '<button class="js-send-request button" data-prov="' + provider.id + '">Send</button>' +
         '</div></div></div></div></div></div></div></div></article></div>';

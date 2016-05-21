@@ -2,6 +2,7 @@
     height: 50px;
     line-height: 50px;
     margin-bottom: 24px;
+    flex-wrap: wrap;
 }
 
 .search-form-user label {
@@ -16,18 +17,16 @@
 .search-form-user select {
     border-radius: 0 !important;
     box-shadow: 0 !important;
-    border: 1px solid #888 !important;
+    border: 1px solid #7f8c8d !important;
 }
 
 .search-form-user input[type=submit] {
     border-radius: 0;
     margin-top: 10px;
-    background-color: #c0392b;
+    background-color: #7f8c8d;
+    line-height: 20px;
 }
 
-.search-form-user input[type=submit]:hover {
-    background-color: #e74c3c;
-}
 
 img.search-avatar-user {
     border-radius: 5px;
@@ -44,15 +43,24 @@ div.provider-box-content {
 
 button.js-request-service {
     border-radius: 0;
-    background-color: #c0392b;
-    color: #ecf0f1;
+    background-color: #7f8c8d;
     border: 0;
+    border-top: 5px solid #2ecc71;
+    color: #ecf0f1;
     margin-bottom: 10px;
     width: 100%;
+    line-height: 20px
 }
 
 button.js-request-service:hover {
-    background-color: #e74c3c;
+    background-color: #2ecc71 !important;
+    border-top: 5px solid #2ecc71;
+    color: #ecf0f1;
+}
+
+button.js-request-service:focus {
+    background-color: #7f8c8d;
+    border-top: 5px solid #2ecc71;
     color: #ecf0f1;
 }
 
@@ -66,12 +74,22 @@ button.js-send-request {
     width: 100%;
     margin-top: 10px;
     border-radius: 0;
-    background-color: #c0392b;
-    color: #ecf0f1;
+    background-color: #7f8c8d;
     border: 0;
+    border-top: 5px solid #2ecc71;
+    color: #ecf0f1;
 }
 
 button.js-send-request:hover {
-    background-color: #e74c3c;
+    background-color: #2ecc71;
     color: #ecf0f1;
+    border-top: 5px solid #2ecc71;
+}
+
+
+/*-------media-querie------*/
+@media (max-width: 410px) {
+    .search-form-user {
+        margin-bottom: 75px;
+    }
 }

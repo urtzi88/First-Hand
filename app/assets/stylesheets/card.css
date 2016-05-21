@@ -7,7 +7,8 @@
 }
 
 .is-custom-card {
-    box-shadow: 0 1px 2px rgba(0,0,0,.5) !important;
+    box-shadow: none !important;
+    border: 1px solid #7f8c8d;
 }
 
 .is-custom-card .card-content {
@@ -19,53 +20,49 @@
 }
 
 .is-item-good {
-    background-color: rgba(39, 174, 96, .7);
+    background-color: #7f8c8d;
+    border-top: 5px solid #2ecc71 !important;
     color: #ecf0f1;
-    border: 1px solid rgba(39, 174, 96, .7);
 }
 
 .is-item-medium {
-    background-color: rgba(211, 84, 0, .7);
+    background-color: #7f8c8d;
     color: #ecf0f1;
-    border: 1px solid rgba(211, 84, 0, .7);
+    border-top: 5px solid #f1c40f !important;
+
 }
 
 .is-item-bad {
-    background-color: rgba(192, 57, 43, .7);
+    background-color: #7f8c8d;
     color: #ecf0f1;
-    border: 1px solid rgba(192, 57, 43, .7);
+    border-top: 5px solid #e74c3c !important;
 }
 
 .is-item-good:hover {
-    background-color: rgba(39, 174, 96, 1);
+    background-color: #2ecc71;
     color: #ecf0f1;
-    border: 1px solid rgba(39, 174, 96, 1);
 }
 
 .is-item-medium:hover {
-    background-color: rgba(211, 84, 0, 1);
+    background-color: #f1c40f;
     color: #ecf0f1;
-    border: rgba(211, 84, 0, 1);
 }
 
 .is-item-bad:hover {
-    background-color: rgba(192, 57, 43, 1);
+    background-color: #e74c3c;
     color: #ecf0f1;
-    border: rgba(192, 57, 43, 1);
 }
 
 input[type=submit].is-feedback-button {
-    background-color: rgba(39, 174, 96, .7);
+    background-color: #7f8c8d;
     width: 100%;
     text-align: center;
     border-radius: 0;
     color: #ecf0f1;
+    border-top: 5px solid #2ecc71;
 }
 
 input[type=submit].is-feedback-button:hover {
-    background-color: rgba(39, 174, 96, 1);
-    width: 100%;
-    text-align: center;
-    border-radius: 0;
+    background-color: #2ecc71;
     color: #ecf0f1;
 }

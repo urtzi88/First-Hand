@@ -5,7 +5,7 @@ class TransactionsController < ApplicationController
     transaction = provider.transactions.create(
       provider_id: provider.id,
       client_id: current_user.id,
-      date_time: params[:date_time]
+      date_time: Date.parse(params[:date_time])
     );
     render json: transaction
   end

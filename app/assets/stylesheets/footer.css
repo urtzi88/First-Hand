@@ -1,7 +1,16 @@
+/*---Sticky footer--*/
+body {
+    min-height: 100vh !important;
+}
+
+body .main-content-container {
+    min-height: calc(100vh - 170px);
+}
+/*-------------------*/
 footer.is-red {
     background-color: #c0392b;
-    margin-top: 25px;
     height: 100px;
+    flex: 1;
 }
 
 footer.is-red p,

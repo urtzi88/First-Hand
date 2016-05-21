@@ -1,5 +1,14 @@
+div.columns {
+    margin-bottom: 10px !important;
+}
+
 div.box {
     border-radius: 0 !important;
+}
+
+h2.is-page-title {
+    margin-top: 20px;
+    color: #2c3e50;
 }
 
 .hidden {

@@ -1,5 +1,6 @@
 h1.is-main {
     font-family: 'Shadows Into Light Two', cursive;
+    font-weight: bold;
     color: #ecf0f1;
 }
 
@@ -10,9 +11,22 @@ h1.is-main {
 
 .container.is-user .hero {
     background-color: #c0392b;
+    height: 50px;
 }
 
 .hero span,
 .hero .nav-item {
     color: #ecf0f1;
+}
+
+span#header-toggle:hover {
+    background-color: #e74c3c !important;
+}
+
+span#header-toggle span {
+    background-color: #ecf0f1 !important;
+}
+
+div#top-nav {
+    background: #c0392b !important;
 }
