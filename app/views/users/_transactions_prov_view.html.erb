@@ -6,7 +6,7 @@
     <div class="box js-completed-transactions is-hidden">
   <% end %>
       <div class="columns">
-        <h1 class="title is-3">Completed Services:</h1>
+        <h1 class="title is-3 is-card-title">Completed Services:</h1>
       </div>
     <%= render partial: "card", locals: {
                       transactions: @transactions,
@@ -36,7 +36,7 @@
       <div class="box js-pending-transactions is-hidden">
     <% end %>
         <div class="columns">
-          <h1 class="title is-3">Pending Services:</h1>
+          <h1 class="title is-3 is-card-title">Pending Services:</h1>
         </div>
       <%= render partial: "card", locals: {
                         transactions: @transactions,
@@ -66,7 +66,7 @@
       <div class="box js-accepted-transactions is-hidden">
     <% end %>
         <div class="columns">
-          <h1 class="title is-3">Accepted Services:</h1>
+          <h1 class="title is-3 is-card-title">Accepted Services:</h1>
         </div>
     <%= render partial: "card", locals: {
                       transactions: @transactions,
@@ -96,7 +96,7 @@
       <div class="box js-rejected-transactions is-hidden">
     <% end %>
         <div class="columns">
-          <h1 class="title is-3">Rejected Services:</h1>
+          <h1 class="title is-3 is-card-title">Rejected Services:</h1>
         </div>
     <%= render partial: "card", locals: {
                       transactions: @transactions,
@@ -127,7 +127,7 @@
       <div class="box js-cancelled-transactions is-hidden">
     <% end %>
       <div class="columns">
-        <h1 class="title is-3">Cancelled Services:</h1>
+        <h1 class="title is-3 is-card-title">Cancelled Services:</h1>
       </div>
     <%= render partial: "card", locals: {
                       transactions: @transactions,

@@ -1,7 +1,9 @@
 $(function() {
 
-    $('.filter-results').delegate('#user-date', 'focusin', function(event) {
-        $(event.currentTarget).datepicker();
+    $('.filter-results').delegate('.is-user-date', 'focusin', function(event) {
+        $('.is-user-date').each(function() {
+            $(this).datepicker();
+        });
     });
 
     $('.filter-results').delegate('.js-request-service', 'click', function(event) {
@@ -23,7 +25,7 @@ $(function() {
         if(date == "" || hour == "") {
             alert("Please fill in the date and time fields!");
         } else {
-            var date = $(event.currentTarget.parentNode.parentNode).children('.user-date').children('#user-date').val();
+            var date = $(event.currentTarget.parentNode.parentNode).children('.user-date').children('.is-user-date').val();
             console.log(date)
             var time = $(event.currentTarget.parentNode.parentNode).children('.user-time').children('#user-time').val();
             var hour = time.length > 2 ? time.slice(0,2) : time.slice(0);

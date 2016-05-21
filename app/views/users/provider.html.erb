@@ -1,13 +1,15 @@
-<div class="columns">
-  <div class="column is-one-quarter">
-    <%= render "profile_box" %>
-    <div class="box client-requests">
-      <%= render "transactions_index" %>
+<div class="container">
+  <div class="columns">
+    <div class="column is-one-quarter">
+      <%= render "profile_box" %>
+      <div class="box client-requests">
+        <%= render "transactions_index" %>
+      </div>
     </div>
-  </div>
-  <div class="column is-three-quarters">
-    <div class="container filter-form">
-      <%= render "transactions_prov_view" %>
+    <div class="column is-three-quarters">
+      <div class="container filter-form">
+        <%= render "transactions_prov_view" %>
+      </div>
     </div>
   </div>
 </div>

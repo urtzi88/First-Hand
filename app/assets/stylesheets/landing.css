@@ -1,0 +1,131 @@
+.is-section-1 {
+}
+
+.is-slider {
+    position: relative;
+}
+
+.is-inner-section-1 {
+    height: 70vh;
+}
+
+.is-slide {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.is-slide-hidden {
+    display: none;
+}
+
+.is-slide .content {
+    text-align: center;
+    align-self: center;
+}
+
+.is-slide .content h1 {
+    color: #ecf0f1;
+    text-shadow: -1px 0 2px #2c3e50, 0 1px 2px #2c3e50, 1px 0 2px #2c3e50, 0 -1px 2px #2c3e50;
+}
+
+.is-slide .content p {
+    font-size: 2em;
+    color: #ecf0f1;
+    text-shadow: -1px 0 2px #2c3e50, 0 1px 2px #2c3e50, 1px 0 2px #2c3e50, 0 -1px 2px #2c3e50;
+}
+
+.is-slide .content p span {
+    font-family: 'Shadows Into Light Two', cursive;
+    font-size: 1.5em;
+}
+
+.is-slide .content a {
+    display: block;
+    width: 250px;
+    height: 60px;
+    margin: auto;
+    border: 0;
+    background-color: #27ae60;
+    font-size: 30px;
+    line-height: 60px;
+    margin-top: 60px;
+    color: #ecf0f1 !important;
+    border-radius: 5px;
+}
+
+.is-slide .content a:hover {
+    background-color: #2ecc71;
+}
+
+#slide-1 {
+    background: url(cleaning.jpg) no-repeat center center fixed;
+    background-size: cover;
+}
+
+#slide-2 {
+    background: url(photography.jpg) no-repeat center center fixed;
+    background-size: cover;
+}
+
+#slide-3 {
+    background: url(plumbing.jpg) no-repeat center center fixed;
+    background-size: cover;
+}
+
+.is-slider-controls {
+    height: 20px;
+    position: absolute;
+    display: block;
+    width: 100%;
+    bottom: 30px;
+    text-align: center;
+}
+
+.slider-button {
+    height: 20px;
+    width: 20px;
+    display: inline-block;
+    background-color: rgba(192, 57, 43, 0.5);
+    margin: 0 10px;
+    border: 3px solid rgba(236, 240, 241, 0.5);
+    border-radius: 50%;
+}
+
+.is-button-active {
+    background-color: #c0392b;
+    border: 3px solid #ecf0f1;
+}
+
+/*-----inner-section-2-----*/
+
+.is-inner-section-2 {
+    background-color: #bdc3c7;
+}
+
+.is-inner-section-2 .container {
+    height: 500px;
+}
+
+.is-inner-section-2 .column {
+    display: flex;
+    justify-content: center;
+}
+
+.is-font-icon {
+    width: 200px;
+    height: 200px;
+    border: 5px dotted #c0392b;
+    border-radius: 50%;
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.is-font-icon i {
+    font-size: 12em;
+    color: #c0392b;
+}

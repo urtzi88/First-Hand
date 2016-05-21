@@ -4,6 +4,11 @@
 
 .is-card-title {
     font-family: 'Quicksand', sans-serif;
+    display: block;
+    width: 100%;
+    border-bottom: 1px solid #222324;
+    height: 40px;
+    margin-bottom: 10px;
 }
 
 .is-custom-card {

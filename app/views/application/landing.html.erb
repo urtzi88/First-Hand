@@ -1,1 +1,48 @@
-<h1 class="title is-1">This is the landing page</h1>
+<div class="container is-user is-landing-container is-section-1">
+  <div class="is-slider">
+    <div class="container is-user is-inner-section-1">
+      <div class="is-slide" id="slide-1">
+        <div class="content">
+          <h1 class="title is-1">Looking for those extra hours?</h1>
+          <p>Register today at <span class="is-app-name">first hand</span> and start making business with your neighbours!</p>
+          <%= link_to "Register here!", new_user_registration_path, class: "is-slider-button" %>
+        </div>
+      </div>
+      <div class="is-slide is-slide-hidden" id="slide-2">
+        <div class="content">
+          <h1 class="title is-1">Want to make some money doing something you love?</h1>
+          <p>Register today at <span class="is-app-name">first hand</span> and start making profit of that expensive photography course you took!</p>
+          <%= link_to "Register here!", new_user_registration_path, class: "is-slider-button" %>
+        </div>
+      </div>
+      <div class="is-slide is-slide-hidden" id="slide-3">
+        <div class="content">
+          <h1 class="title is-1">Are you a great handyman? Wanna take on an extra work?</h1>
+          <p>Register today at <span class="is-app-name">first hand</span> and start fixing your neighbour's pipes!</p>
+          <%= link_to "Register here!", new_user_registration_path, class: "is-slider-button" %>
+        </div>
+      </div>
+    </div>
+    <div class="is-slider-controls">
+      <div class="slider-button is-button-active" id="button-1"></div>
+      <div class="slider-button" id="button-2"></div>
+      <div class="slider-button" id="button-3"></div>
+    </div>
+  </div>
+
+  <div class="container is-user is-inner-section-2">
+    <div class="container">
+      <div class="columns">
+        <div class="column">
+          <div class="is-font-icon"><i class="fa fa-star-o" aria-hidden="true"></i></div>
+        </div>
+        <div class="column">
+          <div class="is-font-icon"><i class="fa fa-star-o" aria-hidden="true"></i></div>
+        </div>
+        <div class="column">
+          <div class="is-font-icon"><i class="fa fa-star-o" aria-hidden="true"></i></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

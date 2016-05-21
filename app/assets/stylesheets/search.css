@@ -64,7 +64,7 @@ button.js-request-service:focus {
     color: #ecf0f1;
 }
 
-#user-date,
+.is-user-date,
 #user-time {
     width: 100%;
     text-align: center;

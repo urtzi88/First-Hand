@@ -21,7 +21,7 @@ function createProviderBox(provider) {
         '<div class="date-and-time is-hidden">' +
         '<div class="user-date">' +
         '<label for="service_date">Select desired date: </label><br>' +
-        '<input id="user-date" type="text" name="service_date">' +
+        '<input id="user-date' + provider.id + '" class="is-user-date" type="text" name="service_date">' +
         '</div><div class="user-time">' +
         '<label for="service_time">Select desired time: </label><br>' +
         '<input id="user-time" type="text" name="service_time">' +

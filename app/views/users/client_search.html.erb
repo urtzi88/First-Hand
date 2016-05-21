@@ -1,16 +1,18 @@
-<div class="columns">
-  <div class="column is-one-quarter">
-    <%= link_to "Profile", profile_path, class: "button is-search-button" %>
-    <%= render "profile_box" %>
-    <div class="box client-requests">
-      <%= render "transactions_index" %>
+<div class="container">
+  <div class="columns">
+    <div class="column is-one-quarter">
+      <%= link_to "Profile", profile_path, class: "button is-search-button" %>
+      <%= render "profile_box" %>
+      <div class="box client-requests">
+        <%= render "transactions_index" %>
+      </div>
     </div>
-  </div>
-  <div class="column is-three-quarters">
-    <div class="container filter-form">
-      <%= render 'search_form' %>
-    </div>
-    <div class="container filter-results">
+    <div class="column is-three-quarters">
+      <div class="container filter-form">
+        <%= render 'search_form' %>
+      </div>
+      <div class="container filter-results">
+      </div>
     </div>
   </div>
 </div>
