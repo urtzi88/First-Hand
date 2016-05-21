@@ -31,7 +31,7 @@ $(function() {
             time = hour + ":" + minutes
             var user_date_time = date + ' ' + time;
             var dateArray = date.split('/')
-            user_date_time = new Date(Date.UTC(dateArray[2], dateArray[0], dateArray[1],hour, minutes));
+            user_date_time = new Date(Date.UTC(dateArray[2], dateArray[0] - 1, dateArray[1],hour, minutes));
             console.log(user_date_time)
             $.ajax({
                 type: 'POST',
