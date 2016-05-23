@@ -13,6 +13,7 @@ $(function() {
         var rating = $(form).find(':checked').val();
         var feedback = $(form).find('textarea').val();
         var transaction = $(form).find('.button').attr('data_transaction');
+        console.log(transaction)
         var provider = $(form).find('.button').attr('data_provider');
         if(rating == null) {
             alert("Please input a rating");

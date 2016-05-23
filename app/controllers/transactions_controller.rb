@@ -27,7 +27,7 @@ class TransactionsController < ApplicationController
   end
 
   def feedback
-    transaction = Transaction.find(params[:id])
+    transaction = Transaction.find(params[:transaction_id])
     if current_user.type == "Provider"
       transaction.update(provider_feedback: params[:rat_feed][:feedback], provider_rating: params[:rat_feed][:rating])
     elsif current_user.type == "Client"

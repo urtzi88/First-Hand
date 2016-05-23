@@ -164,6 +164,11 @@
     align-items: center;
 }
 
+.is-user-reviews {
+    display: flex;
+    flex-wrap: wrap;
+}
+
 h1.user-reviews {
     color: #ecf0f1;
     padding-top: 20px;
@@ -171,14 +176,14 @@ h1.user-reviews {
 }
 
 .user-review {
-    max-width: 80%;
-    margin: auto;
-    display: block;
-    box-shadow: 2px 0 5px rgba(44, 62, 80, 0.5), -2px 0 5px rgba(44, 62, 80, 0.5),
-                0 2px 5px rgba(44, 62, 80, 0.5), 0 -2px 5px rgba(44, 62, 80, 0.5);
+    min-width: 270px;
+    max-width: 350px;
 }
 
-.user-review p {
+.user-review p,
+.user-review img {
+    max-width: 80%;
+    margin: auto;
     display: block;
     background: #ecf0f1;
     padding: 10px;
