@@ -17,7 +17,8 @@
     color: #2c3e50;
 }
 
-.devise-form input {
+.devise-form input,
+.devise-form textarea {
     border-radius: 0;
     border: 1px solid #7f8c8d;
 }

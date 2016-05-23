@@ -5,7 +5,8 @@ class TransactionsController < ApplicationController
     transaction = provider.transactions.create(
       provider_id: provider.id,
       client_id: current_user.id,
-      date_time: params[:date_time]
+      date_time: params[:date_time],
+      description: params[:description]
     );
     render json: transaction
   end
@@ -14,7 +15,7 @@ class TransactionsController < ApplicationController
     transaction = Transaction.find(params[:id])
     status = params[:status][:provider_status]
     if current_user.type == "Client"
-      if status == "Cancelled" || status == "Requested"
+      if status == "Cancelled" || status == "Requested" || status == "Archived"
         transaction.update(client_status: status)
       else
         transaction.update(client_status: "Requested", provider_status: "Pending")

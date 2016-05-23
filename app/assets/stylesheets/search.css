@@ -20,14 +20,6 @@
     border: 1px solid #7f8c8d !important;
 }
 
-.search-form-user input[type=submit] {
-    border-radius: 0;
-    margin-top: 10px;
-    background-color: #7f8c8d;
-    line-height: 20px;
-}
-
-
 img.search-avatar-user {
     border-radius: 5px;
     margin-top: 5px;
@@ -68,6 +60,11 @@ button.js-request-service:focus {
 #user-time {
     width: 100%;
     text-align: center;
+}
+
+#user-description {
+    width: 100%;
+    border: 1px solid #ccc;
 }
 
 button.js-send-request {

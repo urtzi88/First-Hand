@@ -55,6 +55,10 @@
         </p>
 
         <p class="control">
+          <%= f.text_area :description, placeholder: "Description", class: "textarea"  %>
+        </p>
+
+        <p class="control">
           <%= f.radio_button(:type, "Client", class: "js-user-type") %>
           <%= label_tag(:type, "Client account") %>
           <%= f.radio_button(:type, "Provider", class: "js-user-type") %>

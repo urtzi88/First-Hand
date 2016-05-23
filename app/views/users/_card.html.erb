@@ -2,48 +2,51 @@
 <% if status == "Complete" %>
   <% buttons_class = "js-feedback-provider" %>
 <% else %>
-  <% buttons_class = "js-action-service-" + current_user.type.downcase %>
+  <% buttons_class = "js-action-service " + current_user.type %>
 <% end %>
 <div class="columns is-wrapped <%= box_class %>">
   <% transactions.each do |transaction| %>
-    <% if get_status_cond(status, transaction) && get_feedback_condition(logic, transaction) %>
-      <% if current_user.type == "Client" %>
-        <% user = get_provider(transaction.provider_id) %>
-      <% else %>
-        <% user = get_client(transaction.client_id) %>
-      <% end %>
-      <div class="column is-half is-hosting-a-card">
-        <div class="card is-fullwidth is-custom-card">
-          <div class="card-content">
-            <div class="media">
-              <div class="media-left">
-                <figure class="image is-64x64">
-                  <%= image_tag user.avatar.url(:thumb), class: "user-avatar-thumb" %>
-                </figure>
+   <% if transaction.client_status != "Archived" && transaction.provider_status != "Archived" %>
+      <% if get_status_cond(status, transaction) && get_feedback_condition(logic, transaction) %>
+        <% if current_user.type == "Client" %>
+          <% user = get_provider(transaction.provider_id) %>
+        <% else %>
+          <% user = get_client(transaction.client_id) %>
+        <% end %>
+        <div class="column is-half is-hosting-a-card">
+          <div class="card is-fullwidth is-custom-card">
+            <div class="card-content">
+              <div class="media">
+                <div class="media-left">
+                  <figure class="image is-64x64">
+                    <%= image_tag user.avatar.url(:thumb), class: "user-avatar-thumb" %>
+                  </figure>
+                </div>
+                <div class="media-content">
+                  <p class="title is-5"><%= user.name %> <small>Rating:</small> <%= user.average_rating%>(<%= user.rating_amount %>)</p>
+                  <p class="subtitle is-7 has-no-bottom-margin js-destination-address"><%= user.address %></p>
+                  <p class="subtitle is-7 js-destination"><span class="js-destination-postcode"><%= user.postcode %></span> - <span class="js-destination-city"><%= user.city %></span></p>
+                </div>
               </div>
-              <div class="media-content">
-                <p class="title is-5"><%= user.name %> <small>Rating:</small> <%= user.average_rating%>(<%= user.rating_amount %>)</p>
-                <p class="subtitle is-7 has-no-bottom-margin"><%= user.address %></p>
-                <p class="subtitle is-7"><%= user.postcode %> - <%= user.city %></p>
+              <div class="content">
+                <p><strong>Description: </strong><%= transaction.description %></p>
+                <p>
+                  On: <%= transaction.date_time.strftime('%a %d %b %Y') %>
+                  At: <%= transaction.date_time.to_s.split(' ')[1] %>
+                </p>
+                <div class="js-form-container is-hidden">
+                  <%= render partial: "feedback_form_provider", locals: {transaction: transaction} %>
+                </div>
               </div>
             </div>
-            <div class="content">
-              <p>
-                On: <%= transaction.date_time.strftime('%a %d %b %Y') %>
-                At: <%= transaction.date_time.to_s.split(' ')[1] %>
-              </p>
-              <div class="js-form-container is-hidden">
-                <%= render partial: "feedback_form_provider", locals: {transaction: transaction} %>
-              </div>
-            </div>
+            <footer class="card-footer">
+              <a class="card-footer-item is-item-good <%= buttons[:good][:class] %> <%= buttons_class %>" data-key='{"client":"<%= transaction.client_id %>","provider":"<%= transaction.provider_id %>","transaction":"<%= transaction.id %>","current_status":"<%= status %>","next_status":"<%= buttons[:good][:to] %>","client_status":"<%= transaction.client_status %>"}'><%= buttons[:good][:text] %></a>
+              <a class="card-footer-item is-item-medium <%= buttons[:medium][:class] %> <%= buttons_class %>" data-key='{"client":"<%= transaction.client_id %>","provider":"<%= transaction.provider_id %>","transaction":"<%= transaction.id %>","current_status":"<%= status %>","next_status":"<%= buttons[:medium][:to] %>","client_status":"<%= transaction.client_status %>"}'><%= buttons[:medium][:text] %></a>
+              <a class="card-footer-item is-item-bad <%= buttons[:bad][:class] %> <%= buttons_class %>" data-key='{"client":"<%= transaction.client_id %>","provider":"<%= transaction.provider_id %>","transaction":"<%= transaction.id %>","current_status":"<%= get_status_for_archived_button(status) %>","next_status":"<%= buttons[:bad][:to] %>","client_status":"<%= transaction.client_status %>"}'><%= buttons[:bad][:text] %></a>
+            </footer>
           </div>
-          <footer class="card-footer">
-            <a class="card-footer-item is-item-good <%= buttons[:good][:class] %> <%= buttons_class %>" data-key='{"client":"<%= transaction.client_id %>","provider":"<%= transaction.provider_id %>","transaction":"<%= transaction.id %>","current_status":"<%= status %>","next_status":"<%= buttons[:good][:to] %>","client_status":"<%= transaction.client_status %>"}'><%= buttons[:good][:text] %></a>
-            <a class="card-footer-item is-item-medium <%= buttons[:medium][:class] %> <%= buttons_class %>" data-key='{"client":"<%= transaction.client_id %>","provider":"<%= transaction.provider_id %>","transaction":"<%= transaction.id %>","current_status":"<%= status %>","next_status":"<%= buttons[:medium][:to] %>","client_status":"<%= transaction.client_status %>"}'><%= buttons[:medium][:text] %></a>
-            <a class="card-footer-item is-item-bad <%= buttons[:bad][:class] %> <%= buttons_class %>" data-key='{"client":"<%= transaction.client_id %>","provider":"<%= transaction.provider_id %>","transaction":"<%= transaction.id %>","current_status":"<%= get_status_for_archived_button(status) %>","next_status":"<%= buttons[:bad][:to] %>","client_status":"<%= transaction.client_status %>"}'><%= buttons[:bad][:text] %></a>
-          </footer>
         </div>
-      </div>
+      <% end %>
     <% end %>
   <% end %>
 </div>

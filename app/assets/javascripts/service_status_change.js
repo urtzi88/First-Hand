@@ -1,5 +1,5 @@
 $(function() {
-    $('.js-service-wrapper').delegate('.js-action-service-provider', 'click', function(event) {
+    $('.js-service-wrapper').delegate('.js-action-service', 'click', function(event) {
         event.preventDefault();
         var confirmation = confirm("Are you sure?");
         if(confirmation) {
@@ -11,58 +11,49 @@ $(function() {
                 current_status: $(event.currentTarget).data('key').current_status
             }
             var button = event.currentTarget;
-            ajaxQuery(user_id, transaction_id, status, button);
-        }
-    });
-
-    $('.js-service-wrapper').delegate('.js-action-service-client', 'click', function(event) {
-        event.preventDefault();
-        var confirmation = confirm("Are you sure?");
-        if(confirmation) {
-            var user_id = $(event.currentTarget).data('key').provider;
-            var transaction_id = $(event.currentTarget).data('key').transaction;
-            var status = {
-                provider_status: $(event.currentTarget).data('key').next_status,
-                client_status: $(event.currentTarget).data('key').client_status,
-                current_status: $(event.currentTarget).data('key').current_status
+            if($(event.currentTarget).hasClass("Client")) {
+                var type = "Client";
+            } else {
+                var type = "Provider"
             }
-            var button = event.currentTarget;
-            ajaxQuery(user_id, transaction_id, status, button);
+            ajaxQuery(user_id, transaction_id, status, button, type);
         }
     });
 
-    function ajaxQuery(user, transaction, status, button) {
+    function ajaxQuery(user, transaction, status, button, type) {
         var button = button;
         var obj = {button: button,
-                   status: status
+                   status: status,
+                   usr_type: type
                };
-        if(status != 'Archived') {
-            $.ajax({
-                method: 'PATCH',
-                url: '/users/' + user + '/transactions/' + transaction,
-                data: { status: status },
-                success: modifyDomServices.bind(obj)
-            })
-        } else {
-            console.log('functionality not implemented yet');
-        }
+        $.ajax({
+            method: 'PATCH',
+            url: '/users/' + user + '/transactions/' + transaction,
+            data: { status: status },
+            success: modifyDomServices.bind(obj)
+        })
     }
 
     function modifyDomServices(data) {
         var status = this.status;
         var button = this.button;
-        if(status.provider_status == "Accepted" && status.client_status != 'Cancelled') {
-            moveToAccepted(data, status, button);
-        } else if (status.provider_status == "Complete" && status.client_status != 'Cancelled') {
-            moveToComplete(data, status, button);
-        } else if (status.provider_status == "Pending" && status.client_status != 'Cancelled') {
-            moveToPending(data, status, button);
-        } else if (status.provider_status == "Rejected" && status.client_status != 'Cancelled') {
-            moveToRejected(data, status, button);
-        } else if (status.client_status == "Requested") {
-            moveToCancelled(data, status, button);
-        } else if (status.client_status == "Cancelled") {
-            moveBackFromCancelled(data, status, button);
+        var user_type = this.usr_type
+        if (status.client_status == "Archived" || status.provider_status == "Archived") {
+            deleteCard(data, button, status, user_type);
+        } else {
+            if(status.provider_status == "Accepted" && status.client_status != 'Cancelled') {
+                moveToAccepted(data, status, button);
+            } else if (status.provider_status == "Complete" && status.client_status != 'Cancelled') {
+                moveToComplete(data, status, button);
+            } else if (status.provider_status == "Pending" && status.client_status != 'Cancelled') {
+                moveToPending(data, status, button);
+            } else if (status.provider_status == "Rejected" && status.client_status != 'Cancelled') {
+                moveToRejected(data, status, button);
+            } else if (status.client_status == "Requested") {
+                moveToCancelled(data, status, button);
+            } else if (status.client_status == "Cancelled") {
+                moveBackFromCancelled(data, status, button);
+            }
         }
     }
 
@@ -199,6 +190,16 @@ $(function() {
         $('.js-pending-services').append(card_content);
         $('.js-pending-requests').append(line_req);
         hidePreviousBox(status.current_status);
+    }
+
+    function deleteCard(data, button, status, user_type) {
+        var card = $(button).closest('.is-hosting-a-card');
+        card.remove();
+        if(status.client_status == "Cancelled") {
+            hidePreviousBox(status.client_status);
+        } else {
+            hidePreviousBox(status.current_status);
+        }
     }
 
 });

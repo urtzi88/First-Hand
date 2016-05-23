@@ -102,11 +102,12 @@
 /*-----inner-section-2-----*/
 
 .is-inner-section-2 {
-    background-color: #bdc3c7;
+    background: url(symphony.png);
+    box-shadow: inset 0 2px 5px rgba(44, 62, 80, 0.5);
 }
 
 .is-inner-section-2 .container {
-    height: 500px;
+    min-height: 500px;
 }
 
 .is-inner-section-2 .column {
@@ -117,8 +118,9 @@
 .is-font-icon {
     width: 200px;
     height: 200px;
-    border: 5px dotted #c0392b;
+    border: 5px dotted #2c3e50;
     border-radius: 50%;
+    margin: auto;
     margin-top: 30px;
     display: flex;
     align-items: center;
@@ -126,6 +128,59 @@
 }
 
 .is-font-icon i {
-    font-size: 12em;
-    color: #c0392b;
+    font-size: 6em;
+    color: #2c3e50;
+}
+
+.is-section-2-text {
+    display: block;
+    width: 80%;
+    margin: auto;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.is-section-2-text p {
+    font-size: 1.5em;
+    color: #2c3e50;
+}
+
+/*-----inner-section-3-----*/
+
+.is-inner-section-3 {
+    background: url(footer_lodyas.png);
+    box-shadow: inset 0 2px 5px rgba(44, 62, 80, 1);
+}
+
+.is-inner-section-3 .container {
+    min-height: 500px;
+    margin-bottom: -10px;
+}
+
+.is-inner-section-3 .columns {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+h1.user-reviews {
+    color: #ecf0f1;
+    padding-top: 20px;
+    padding-bottom: 30px;
+}
+
+.user-review {
+    max-width: 80%;
+    margin: auto;
+    display: block;
+    box-shadow: 2px 0 5px rgba(44, 62, 80, 0.5), -2px 0 5px rgba(44, 62, 80, 0.5),
+                0 2px 5px rgba(44, 62, 80, 0.5), 0 -2px 5px rgba(44, 62, 80, 0.5);
+}
+
+.user-review p {
+    display: block;
+    background: #ecf0f1;
+    padding: 10px;
+    margin-top: -5px;
 }

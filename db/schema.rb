@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160519103740) do
+ActiveRecord::Schema.define(version: 20160523115923) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 20160519103740) do
     t.datetime "updated_at",                              null: false
     t.string   "provider_status",   default: "Pending"
     t.string   "client_status",     default: "Requested"
+    t.text     "description"
   end
 
   create_table "users", force: :cascade do |t|
@@ -66,6 +67,7 @@ ActiveRecord::Schema.define(version: 20160519103740) do
     t.datetime "avatar_updated_at"
     t.decimal  "average_rating",         precision: 3, scale: 2, default: 0.0
     t.integer  "rating_amount",                                  default: 0
+    t.text     "description"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

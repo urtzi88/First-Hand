@@ -16,9 +16,8 @@
     </span>
 
     <span class="select">
-      <%= select_tag(:providers, options_for_select([['Price asc', 1],['Price desc', 2]])) %>
+      <%= select_tag(:providers, options_for_select([['Price asc', 1],['Price desc', 2]]), id:"filter") %>
     </span>
 
-    <%= f.submit "Filter", class: "button is-submit" %>
 <% end %>
 </div>

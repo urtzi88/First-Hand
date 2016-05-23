@@ -1,26 +1,36 @@
 $(function() {
     //only show all the providers list on the search page
     if($('body').find('.filter-results').length > 0) {
-        $.get({
-            url: '/provider_list'
+        $.ajax({
+            method: 'GET',
+            url: '/users/provider_list',
+            success: showData
         })
-        .done(showData)
     }
 
-    $('.js-filter-form').on('submit', function(event) {
-        event.preventDefault();
+    $('#js-selection').change(function() {
         var selection = $('#js-selection option:selected').val();
-        request_for_results(selection);
+        var filter = $('#filter').val()
+        request_for_results(selection, filter);
     });
 
-    function request_for_results(selection) {
-        $.get({
-            url: '/provider_list/' + selection
+    $('#filter').change(function() {
+        var selection = $('#js-selection option:selected').val();
+        var filter = $('#filter').val()
+        request_for_results(selection, filter);
+    });
+
+    function request_for_results(selection, filter) {
+        $.ajax({
+            method: 'GET',
+            url: '/users/provider_list/' + selection,
+            data: {filter: filter},
+            success: showData
         })
-        .done(showData);
     }
 
     function showData(data) {
+        console.log(data);
         $('.filter-results').empty();
         data.forEach(function(provider) {
             var html = createProviderBox(provider);

@@ -47,7 +47,7 @@ module UsersHelper
   def pending_to_show?(transactions)
     condition = false
     transactions.each do |transaction|
-      if transaction.provider_status == "Pending" && transaction.client_status == "Requested" && transaction.provider_rating.blank?
+      if transaction.provider_status == "Pending" && transaction.client_status == "Requested"
         condition = true
       end
     end
@@ -57,7 +57,7 @@ module UsersHelper
   def accepted_to_show?(transactions)
     condition = false
     transactions.each do |transaction|
-      if transaction.provider_status == "Accepted" && transaction.client_status == "Requested" && transaction.provider_rating.blank?
+      if transaction.provider_status == "Accepted" && transaction.client_status == "Requested"
         condition = true
       end
     end
@@ -67,7 +67,7 @@ module UsersHelper
   def rejected_to_show?(transactions)
     condition = false
     transactions.each do |transaction|
-      if transaction.provider_status == "Rejected" && transaction.client_status == "Requested" && transaction.provider_rating.blank?
+      if transaction.provider_status == "Rejected" && transaction.client_status == "Requested"
         condition = true
       end
     end
@@ -77,7 +77,7 @@ module UsersHelper
   def cancelled_to_show?(transactions)
     condition = false
     transactions.each do |transaction|
-      if transaction.client_status == "Cancelled"
+      if transaction.client_status == "Cancelled" && transaction.provider_status != "Archived"
         condition = true
       end
     end

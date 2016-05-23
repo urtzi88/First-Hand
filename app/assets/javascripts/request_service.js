@@ -15,32 +15,29 @@ $(function() {
     $('.filter-results').delegate('.js-send-request', 'click', function(event) {
         event.preventDefault();
         var provider = event.currentTarget.getAttribute('data-prov');
-        var $button = $(event.currentTarget.parentNode.parentNode.parentNode).children('.js-request-service');
-        var date = $(event.currentTarget.parentNode.parentNode).children('.user-date').children('#user-date').val();
-        var time = $(event.currentTarget.parentNode.parentNode).children('.user-time').children('#user-time').val();
-        var hour = time.length > 2 ? time.slice(0,2) : time.slice(0);
-        var minutes = time.length < 4 ? "00" : time.slice(-2);
-        time = hour + ":" + minutes
-        var user_date_time = date + ' ' + time;
-        if(date == "" || hour == "") {
-            alert("Please fill in the date and time fields!");
-        } else {
-            var date = $(event.currentTarget.parentNode.parentNode).children('.user-date').children('.is-user-date').val();
-            console.log(date)
-            var time = $(event.currentTarget.parentNode.parentNode).children('.user-time').children('#user-time').val();
+        var $button = $(event.currentTarget).closest('.provider-box-content').find('.js-request-service');
+        var date = $(event.currentTarget).closest('.date-and-time').find('.is-user-date').val();
+        var time = $(event.currentTarget).closest('.date-and-time').find('#user-time').val();
+        var desc = $(event.currentTarget).closest('.date-and-time').find('#user-description').val();
+        if($.isNumeric(time)) {
             var hour = time.length > 2 ? time.slice(0,2) : time.slice(0);
             var minutes = time.length < 4 ? "00" : time.slice(-2);
             time = hour + ":" + minutes
             var user_date_time = date + ' ' + time;
             var dateArray = date.split('/')
             user_date_time = new Date(Date.UTC(dateArray[2], dateArray[0] - 1, dateArray[1],hour, minutes));
-            console.log(user_date_time)
-            $.ajax({
-                type: 'POST',
-                url: '/users/' + provider + '/transactions',
-                data: { date_time: user_date_time },
-                success: addRequestData.bind($button)
-            })
+            if(date == "" || hour == "") {
+                alert("Please fill in the date and time fields!");
+            } else {
+                $.ajax({
+                    type: 'POST',
+                    url: '/users/' + provider + '/transactions',
+                    data: { date_time: user_date_time, description: desc },
+                    success: addRequestData.bind($button)
+                })
+            }
+        } else {
+            alert("please enter a valid time")
         }
     });
 

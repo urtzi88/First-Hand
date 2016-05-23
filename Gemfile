@@ -36,6 +36,8 @@ gem 'rails_12factor', group: :production
 
 gem 'paperclip'
 
+gem 'bower-rails'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -50,6 +52,12 @@ group :development, :test do
   gem 'byebug'
 
   gem 'pry-rails'
+
+  gem 'guard-rspec'
+
+  gem 'guard-rails'
+
+  gem 'guard-bundler'
 end
 
 group :development do

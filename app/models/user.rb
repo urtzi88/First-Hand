@@ -29,14 +29,3 @@ class User < ActiveRecord::Base
     end
   end
 end
-
-class Client < User
-  has_many :transactions
-  validates :price_per_hour, absence: true
-end
-
-class Provider < User
-  belongs_to :service
-  has_many :transactions
-  validates :service_id, :price_per_hour, presence: true
-end

@@ -3,20 +3,20 @@ a.is-search-button {
     font-weight: bolder;
     display: block;
     width: 100%;
-    height: 50px !important;
-    background-color: #7f8c8d !important;
+    height: 50px;
+    background-color: #7f8c8d;
     margin-top: 24px;
     color: #ecf0f1;
     font-size: 2em;
     line-height: 40px;
     border: 0;
-    border-top: 5px solid #2ecc71 !important;
+    border-top: 5px solid #2ecc71;
     border-radius: 0;
 }
 
 a.is-search-button:hover {
-    background-color: #2ecc71 !important;
-    border-top: 5px solid #2ecc71 !important;
+    background-color: #2ecc71;
+    border-top: 5px solid #2ecc71;
     color: #ecf0f1;
 }
 
@@ -43,10 +43,30 @@ a.is-search-button:hover {
     width: 100%;
     border-radius: 0;
     line-height: 25px;
-    background-color: #7f8c8d !important;
-    border-top: 5px solid #2ecc71 !important;
+    border: 0;
+    color: #ecf0f1;
+    background-color: #7f8c8d;
+    border-top: 5px solid #2ecc71;
 }
 
 .user-detail-controls a:hover {
-    background-color: #2ecc71 !important;
+    background-color: #2ecc71;
+    border-top: 5px solid #2ecc71;
+    color: #ecf0f1;
+}
+
+/*------media-queries------*/
+
+@media (max-width: 770px) {
+    .user-avatar-medium {
+        display: block;
+        margin: auto;
+    }
+    .user-details {
+        text-align: center;
+    }
+    .column {
+        width: 85%;
+        margin: auto;
+    }
 }

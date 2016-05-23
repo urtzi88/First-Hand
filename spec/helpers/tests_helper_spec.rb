@@ -12,13 +12,4 @@ require 'rails_helper'
 # end
 RSpec.describe TestsHelper, type: :helper do
 
-  before :each do
-    create( :tree_service )
-    create( :category_service )
-  end
-
-  pending "returns the category name of the service" do
-    extpect(get_parent_name(:tree_service)).to eq(:category_service, :name)
-  end
-
 end
