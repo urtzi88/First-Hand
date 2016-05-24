@@ -39,12 +39,11 @@ GEM
     acts_as_tree (2.4.0)
       activerecord (>= 3.0.0)
     arel (6.0.3)
-    aws-sdk (2.3.7)
-      aws-sdk-resources (= 2.3.7)
-    aws-sdk-core (2.3.7)
-      jmespath (~> 1.0)
-    aws-sdk-resources (2.3.7)
-      aws-sdk-core (= 2.3.7)
+    aws-sdk (1.66.0)
+      aws-sdk-v1 (= 1.66.0)
+    aws-sdk-v1 (1.66.0)
+      json (~> 1.4)
+      nokogiri (>= 1.4.4)
     bcrypt (3.1.11)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
@@ -115,8 +114,6 @@ GEM
     jbuilder (2.4.1)
       activesupport (>= 3.0.0, < 5.1)
       multi_json (~> 1.2)
-    jmespath (1.2.4)
-      json_pure (>= 1.8.1)
     jquery-rails (4.1.1)
       rails-dom-testing (>= 1, < 3)
       railties (>= 4.2.0)
@@ -124,7 +121,6 @@ GEM
     jquery-ui-rails (5.0.5)
       railties (>= 3.2.16)
     json (1.8.3)
-    json_pure (1.8.3)
     listen (3.1.5)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -264,7 +260,7 @@ PLATFORMS
 
 DEPENDENCIES
   acts_as_tree
-  aws-sdk (~> 2.3)
+  aws-sdk (< 2.0)
   bulma-rails
   byebug
   coffee-rails (~> 4.1.0)
@@ -279,7 +275,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   jquery-ui-rails
-  paperclip
+  paperclip (~> 4.2)
   pg (~> 0.15)
   pry-rails
   rails (= 4.2.5)
