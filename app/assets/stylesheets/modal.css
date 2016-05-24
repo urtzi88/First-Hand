@@ -1,0 +1,32 @@
+.modal {
+    display: flex !important;
+    align-items: center !important;
+}
+
+.modal-content {
+    background-color: #ecf0f1;
+    padding: 30px 50px;
+}
+
+.modal-buttons {
+    display: block;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.modal-buttons .button {
+    background-color: #7f8c8d;
+    border-radius: 0;
+    color: #ecf0f1;
+    border: 0;
+}
+
+.modal-buttons .is-item-good:hover {
+    background-color: #2ecc71;
+    color: #ecf0f1;
+}
+
+.modal-buttons .is-item-bad:hover {
+    background-color: #e74c3c;
+    color: #ecf0f1;
+}
