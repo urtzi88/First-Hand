@@ -71,3 +71,23 @@ input[type=submit].is-feedback-button:hover {
     background-color: #2ecc71;
     color: #ecf0f1;
 }
+
+.card-description {
+    display: block;
+    height: 70px;
+    line-height: 20px;
+    overflow: scroll;
+    padding: 5px;
+    background-color: #ecf0f1;
+    border: 1px dashed #7f8c8d;
+}
+
+p.card-date {
+    display: block;
+    margin-bottom: -10px !important;
+}
+
+.is-feedback-title {
+    margin-top: 15px;
+    margin-bottom: 5px !important;
+}

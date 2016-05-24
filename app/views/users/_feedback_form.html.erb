@@ -1,6 +1,6 @@
 <%= form_for(transaction, url: user_transaction_path(user_id: transaction.provider_id, id: transaction.id), method: :patch, html:{class: "js-feedback-form"}) do |f| %>
 
-  <p class="title is-4">Feedback:</p>
+  <p class="title is-4 is-feedback-title">Feedback:</p>
 
   <p class="control">
     <%= f.label :provider_rating, "Rating:" %><br/>

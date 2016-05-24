@@ -29,8 +29,8 @@
                 </div>
               </div>
               <div class="content">
-                <p><strong>Description: </strong><%= transaction.description %></p>
-                <p>
+                <p class="card-description"><strong>Description: </strong><%= transaction.description %></p>
+                <p class="card-date">
                   On: <%= transaction.date_time.strftime('%a %d %b %Y') %>
                   At: <%= transaction.date_time.to_s.split(' ')[1] %>
                 </p>
