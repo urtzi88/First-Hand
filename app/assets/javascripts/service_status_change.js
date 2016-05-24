@@ -80,7 +80,7 @@ function moveToComplete(data, status, button) {
     var bad_button = $(button).siblings('.is-item-bad');
     data_attr = fixButtonAttr(bad_button, "", "", status.client_status);
     bad_button.addClass('is-hidden').attr('data-key', JSON.stringify(data_attr));
-    $('.js-completed-services').closest('.box').removeClass('is-hidden');
+    $('.js-complete-services').closest('.box').removeClass('is-hidden');
     var card_content = '<div class="column is-half is-hosting-a-card">' + card.html() + '</div>';
     var line_req = $('[data-id=' + data.id + ']');
     card.remove();

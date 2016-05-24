@@ -83,6 +83,10 @@ button.js-send-request:hover {
     border-top: 5px solid #2ecc71;
 }
 
+.js-loading-icon {
+    margin-top: 15px;
+}
+
 
 /*-------media-querie------*/
 @media (max-width: 410px) {

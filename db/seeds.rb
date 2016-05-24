@@ -36,7 +36,6 @@ car.children.create(name: "Cleaning")
 #     address: faddress,
 #     postcode: fpostcode,
 #     city: fcity,
-#     avatar: favatar
 #   )
 #
 #   puts("New client created: Name: " + fname + fsurname + ", #{fname.downcase}@clientmail.com, " + fnumber + faddress + fpostcode + fcity)
@@ -64,7 +63,6 @@ car.children.create(name: "Cleaning")
 #     city: fcity,
 #     service_id: service,
 #     price_per_hour: price,
-#     avatar: favatar
 #   )
 #
 #   puts("New provider created: Name: #{fname} #{fsurname} #{fname.downcase}@providermail.com, #{fnumber} #{faddress} #{fpostcode} #{fcity}, Service: #{service}, Price: #{price}")
