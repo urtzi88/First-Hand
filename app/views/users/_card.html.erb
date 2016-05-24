@@ -35,11 +35,7 @@
                   At: <%= transaction.date_time.to_s.split(' ')[1] %>
                 </p>
                 <div class="js-form-container is-hidden">
-                  <% if current_status.type == "Client" %>
-                    <%= render partial: "feedback_form", locals: {transaction: transaction} %>
-                  <% else %>
-                    <%= render partial: "feedback_form_provider", locals: {transaction: transaction} %>
-                  <% end %>
+                  <%= render partial: "feedback_form", locals: {transaction: transaction} %>
                 </div>
               </div>
             </div>
