@@ -73,7 +73,7 @@ function moveToAccepted(data, status, button) {
 function moveToComplete(data, status, button) {
     var card = $(button).closest('.is-hosting-a-card');
     var data_attr = fixButtonAttr(button, "Complete", "", status.client_status);
-    $(button).removeClass('is-hidden js-action-service-provider').addClass('js-feedback-provider').attr('data-key',JSON.stringify(data_attr)).text('Give Feedback');
+    $(button).removeClass('is-hidden js-action-service').addClass('js-feedback-provider').attr('data-key',JSON.stringify(data_attr)).text('Give Feedback');
     var medium_button = $(button).siblings('.is-item-medium');
     data_attr = fixButtonAttr(medium_button, "", "", status.client_status);
     medium_button.addClass('is-hidden').attr('data-key', JSON.stringify(data_attr));
