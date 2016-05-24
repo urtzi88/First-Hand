@@ -264,7 +264,7 @@ PLATFORMS
 
 DEPENDENCIES
   acts_as_tree
-  aws-sdk
+  aws-sdk (~> 2.3)
   bulma-rails
   byebug
   coffee-rails (~> 4.1.0)
