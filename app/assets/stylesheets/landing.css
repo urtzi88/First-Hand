@@ -61,17 +61,17 @@
 }
 
 #slide-1 {
-    background: url(cleaning.jpg) no-repeat center center fixed;
+    background: url('https://s3-us-west-2.amazonaws.com/first-hand-assets/cleaning.jpg') no-repeat center center fixed;
     background-size: cover;
 }
 
 #slide-2 {
-    background: url(photography.jpg) no-repeat center center fixed;
+    background: url('https://s3-us-west-2.amazonaws.com/first-hand-assets/photography.jpg') no-repeat center center fixed;
     background-size: cover;
 }
 
 #slide-3 {
-    background: url(plumbing.jpg) no-repeat center center fixed;
+    background: url('https://s3-us-west-2.amazonaws.com/first-hand-assets/plumbing.jpg') no-repeat center center fixed;
     background-size: cover;
 }
 
@@ -102,7 +102,7 @@
 /*-----inner-section-2-----*/
 
 .is-inner-section-2 {
-    background: url(symphony.png);
+    background: url('https://s3-us-west-2.amazonaws.com/first-hand-assets/symphony.png');
     box-shadow: inset 0 2px 5px rgba(44, 62, 80, 0.5);
 }
 
@@ -148,7 +148,7 @@
 /*-----inner-section-3-----*/
 
 .is-inner-section-3 {
-    background: url(footer_lodyas.png);
+    background: url('https://s3-us-west-2.amazonaws.com/first-hand-assets/footer_lodyas.png');
     box-shadow: inset 0 2px 5px rgba(44, 62, 80, 1);
 }
 
