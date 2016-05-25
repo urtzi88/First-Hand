@@ -15,6 +15,14 @@
         <% end %>
         <div class="column is-half is-hosting-a-card">
           <div class="card is-fullwidth is-custom-card">
+            <div class="card-header">
+              <p class="card-header-title is-user-name-card">
+                <%= user.name %> - <%= get_service_name(user.service_id) %><br/>
+              </p>
+              <p class="card-header-icon is-user-rating-card">
+                Rating: <%= user.average_rating%>(<%= user.rating_amount %>)
+              </p>
+            </div>
             <div class="card-content">
               <div class="media">
                 <div class="media-left">
@@ -23,12 +31,12 @@
                   </figure>
                 </div>
                 <div class="media-content">
-                  <p class="title is-5"><%= user.name %> <small>Rating:</small> <%= user.average_rating%>(<%= user.rating_amount %>)</p>
                   <p class="subtitle is-7 has-no-bottom-margin js-destination-address"><%= user.address %></p>
                   <p class="subtitle is-7 js-destination"><span class="js-destination-postcode"><%= user.postcode %></span> - <span class="js-destination-city"><%= user.city %></span></p>
                 </div>
               </div>
               <div class="content">
+                <p><strong>Phone: </strong><%= user.phone_number %><br/><strong>Email: </strong><%= user.email %></p>
                 <p class="card-description"><strong>Description: </strong><%= transaction.description %></p>
                 <p class="card-date">
                   On: <%= transaction.date_time.strftime('%a %d %b %Y') %>
