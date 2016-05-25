@@ -1,6 +1,7 @@
 <div class="container is-user is-landing-container is-section-1">
   <div class="is-slider">
     <div class="container is-user is-inner-section-1">
+      <div class="overlay"></div>
       <div class="is-slide" id="slide-1">
         <div class="content">
           <h1 class="title is-1">Looking for those extra hours?</h1>
@@ -37,7 +38,7 @@
           <div class="convincing-argument">
             <div class="is-font-icon"><i class="fa fa-star-o" aria-hidden="true"></i></div>
             <div class="is-section-2-text">
-              <p>Start making profit on you spare time!</p>
+              <p>Start making profit on your spare time!</p>
               <p>Start getting good quality services at affordable prices from those around you.</p>
             </div>
           </div>
@@ -69,25 +70,41 @@
         <div class="column">
           <div class="user-review">
             <%= image_tag("https://s3-us-west-2.amazonaws.com/first-hand-assets/marta.jpg", class: "user-review-img", alt: "user-review-img") %>
-            <p>Since I offer my services on first hand, i can get that extra money to go on holidays to Honolulu</p>
+            <div class="review-text">
+              <h1>Marta</h1>
+              <h2>Provider: Translations</h2>
+              <p>Since I offer my services on first hand, i can get that extra money to go on holidays to Honolulu</p>
+            </div>
           </div>
         </div>
         <div class="column">
           <div class="user-review">
             <%= image_tag("https://s3-us-west-2.amazonaws.com/first-hand-assets/aaron.jpg", class: "user-review-img", alt: "user-review-img") %>
-            <p>I use first hand almost every week, since I hate cleaning my house...</p>
+            <div class="review-text">
+              <h1>Aaron</h1>
+              <h2>Client</h2>
+              <p>I use first hand almost every week, since I hate cleaning my house...</p>
+            </div>
           </div>
         </div>
         <div class="column">
           <div class="user-review">
             <%= image_tag("https://s3-us-west-2.amazonaws.com/first-hand-assets/ima.jpg", class: "user-review-img", alt: "user-review-img") %>
-            <p>I tried fisrt hand yesterday to get my living room painted and couldn't be happier with it.</p>
+            <div class="review-text">
+              <h1>Imanol</h1>
+              <h2>Client</h2>
+              <p>I tried fisrt hand yesterday to get my living room painted and couldn't be happier with it.</p>
+            </div>
           </div>
         </div>
         <div class="column">
           <div class="user-review">
             <%= image_tag("https://s3-us-west-2.amazonaws.com/first-hand-assets/profile.jpg", class: "user-review-img", alt: "user-review-img") %>
-            <p>I don't wanna show my face. That may be the reason why no one trust my provider profile...</p>
+            <div class="review-text">
+              <h1>Rita</h1>
+              <h2>Provider: Massaging</h2>
+              <p>I don't wanna show my face. That may be the reason why no one trust my provider profile...</p>
+            </div>
           </div>
         </div>
       </div>

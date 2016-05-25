@@ -92,3 +92,11 @@ p.card-date {
     margin-top: 15px;
     margin-bottom: 5px !important;
 }
+
+/*------media-query-------*/
+
+@media (max-width: 770px) {
+    .is-card-title {
+        margin-bottom: 30px;
+    }
+}

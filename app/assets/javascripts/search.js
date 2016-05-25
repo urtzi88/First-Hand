@@ -1,5 +1,5 @@
 $(function() {
-    //only show all the providers list on the search page
+    //show all the providers list on the search page
     if($('body').find('.filter-results').length > 0) {
         $('.js-loading-icon').removeClass('is-hidden');
         $.ajax({
@@ -33,7 +33,6 @@ $(function() {
     }
 
     function showData(data) {
-        console.log(data);
         $('.js-loading-icon').addClass('is-hidden');
         $('.filter-results').empty();
         data.forEach(function(provider) {

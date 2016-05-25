@@ -24,17 +24,16 @@
 .is-slide .content {
     text-align: center;
     align-self: center;
+    z-index: 10;
 }
 
 .is-slide .content h1 {
     color: #ecf0f1;
-    text-shadow: -1px 0 2px #2c3e50, 0 1px 2px #2c3e50, 1px 0 2px #2c3e50, 0 -1px 2px #2c3e50;
 }
 
 .is-slide .content p {
     font-size: 2em;
     color: #ecf0f1;
-    text-shadow: -1px 0 2px #2c3e50, 0 1px 2px #2c3e50, 1px 0 2px #2c3e50, 0 -1px 2px #2c3e50;
 }
 
 .is-slide .content p span {
@@ -60,6 +59,13 @@
     background-color: #2ecc71;
 }
 
+.overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: url('https://s3-us-west-2.amazonaws.com/first-hand-assets/overlay.png');
+}
+
 #slide-1 {
     background: url('https://s3-us-west-2.amazonaws.com/first-hand-assets/cleaning.jpg') no-repeat center center fixed;
     background-size: cover;
@@ -82,6 +88,7 @@
     width: 100%;
     bottom: 30px;
     text-align: center;
+    z-index: 10;
 }
 
 .slider-button {
@@ -141,19 +148,25 @@
 }
 
 .is-section-2-text p {
-    font-size: 1.5em;
+    font-size: 1.6em;
     color: #2c3e50;
+}
+
+.convincing-argument {
+    background-color: rgba(44, 62, 80, 0.1);
+    padding: 10px 10px 30px 10px;
+    border-radius: 10px;
+    margin-top: 30px;
+    margin-bottom: 20px;
 }
 
 /*-----inner-section-3-----*/
 
 .is-inner-section-3 {
     background: url('https://s3-us-west-2.amazonaws.com/first-hand-assets/footer_lodyas.png');
-    box-shadow: inset 0 2px 5px rgba(44, 62, 80, 1);
 }
 
 .is-inner-section-3 .container {
-    min-height: 500px;
     margin-bottom: -10px;
 }
 
@@ -171,21 +184,85 @@
 
 h1.user-reviews {
     color: #ecf0f1;
-    padding-top: 20px;
-    padding-bottom: 30px;
+    padding-top: 50px;
+    padding-bottom: 40px;
 }
 
 .user-review {
-    min-width: 270px;
-    max-width: 350px;
+    width: 270px;
+    margin-bottom: 30px;
+    margin-top: 20px;
+    position: relative;
 }
 
-.user-review p,
 .user-review img {
-    max-width: 80%;
-    margin: auto;
     display: block;
-    background: #ecf0f1;
-    padding: 10px;
-    margin-top: -5px;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+}
+
+.user-review .review-text {
+    display: block;
+    margin-left: 10px;
+    height: 130px;
+    padding: 50px 10px 10px 10px;
+    margin-top: -35px;
+    border-radius: 10px;
+    background-color: #fbfcfc;
+    quotes: "\201C""\201D""\2018""\2019";
+}
+
+.review-text h1 {
+    position: absolute;
+    top: 40px;
+    left: 80px;
+    font-weight: bolder;
+}
+
+.review-text h2 {
+    position: absolute;
+    top: 55px;
+    left: 80px;
+    font-weight: bolder;
+}
+
+.review-text p {
+    line-height: 20px;
+}
+
+.review-text p:before {
+    content: open-quote;
+    font-size: 3em;
+    line-height: 15px;
+    vertical-align: -15px;
+    color: #c0392b;
+}
+
+.review-text p:after {
+    content: close-quote;
+    font-size: 3em;
+    line-height: 20px;
+    vertical-align: -15px;
+    color: #c0392b;
+}
+
+/*------media-query-------*/
+
+@media (max-width: 800px) {
+    .is-slide {
+        font-size: 0.6em;
+    }
+
+    .is-slide .content h1 {
+        font-size: 3.5em;
+        margin-bottom: 0;
+    }
+
+    .is-slide .content a {
+        margin-top: 0;
+        height: 40px;
+        line-height: 40px;
+    }
+
 }
