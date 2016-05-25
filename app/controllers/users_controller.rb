@@ -8,7 +8,7 @@ class UsersController < ApplicationController
       @user = current_user
       @transactions = current_user.transactions.order(date_time: :asc)
       if @user.type == "Client"
-        render 'users/client_search'
+        render 'users/client_profile'
       elsif @user.type == "Provider"
         render 'users/provider'
       end
@@ -17,11 +17,11 @@ class UsersController < ApplicationController
     end
   end
 
-  def client_profile
+  def search
     @provider = Provider.new
     @user = current_user
     @transactions = current_user.transactions.order(date_time: :asc)
-    render 'users/client_profile'
+    render 'users/client_search'
   end
 
   def provider_list
