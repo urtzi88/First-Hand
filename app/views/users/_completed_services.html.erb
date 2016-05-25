@@ -1,0 +1,23 @@
+<div class="columns">
+  <div class="column">
+    <h1 class="title is-3">Completed</h1>
+    <div class="js-completed-requests">
+      <div class="js-completed-requests">
+        <% @transactions.each do |transaction| %>
+          <% if transaction.provider_status == 'Complete' && @user.type == 'Client' %>
+            <p data-id="<%= transaction.id %>">
+              <%= transaction.date_time.strftime('%d %b %Y') %>
+              <%= get_provider_name(transaction.provider_id) %>
+              <%= get_service_name(get_provider(transaction.provider_id).service_id) %>
+            </p>
+          <% elsif transaction.provider_status == "Complete" && @user.type == "Provider" %>
+            <p data-id="<%= transaction.id %>">
+              <%= transaction.date_time.strftime('%d %b %Y') %>
+              <%= get_client_name(transaction.client_id) %>
+            </p>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

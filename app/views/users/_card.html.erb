@@ -17,10 +17,17 @@
           <div class="card is-fullwidth is-custom-card">
             <div class="card-header">
               <p class="card-header-title is-user-name-card">
-                <%= user.name %> - <%= get_service_name(user.service_id) %><br/>
-              </p>
-              <p class="card-header-icon is-user-rating-card">
-                Rating: <%= user.average_rating%>(<%= user.rating_amount %>)
+                <% if user.type == "Client" %>
+                  <%= user.name %>
+                  <p class="card-header-icon is-user-rating-card">
+                    Rating: <%= user.average_rating%>(<%= user.rating_amount %>)
+                  </p>
+                <% else %>
+                  <%= user.name %> - <%= get_service_name(user.service_id) %>
+                  <p class="card-header-icon is-user-rating-card">
+                    Rating: <%= user.average_rating%>(<%= user.rating_amount %>)
+                  </p>
+                <% end %>
               </p>
             </div>
             <div class="card-content">

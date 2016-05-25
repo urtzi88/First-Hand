@@ -1,77 +1,67 @@
-<h1 class="title is-3">Requests</h1>
-<div class="js-current-requests">
-  <h3 class="title is-5 requests-title">Completed requests:</h3>
-  <div class="js-completed-requests">
-    <% @transactions.each do |transaction| %>
-      <% if transaction.provider_status == 'Complete' && @user.type == 'Client' && transaction.client_rating.blank? %>
-        <p data-id="<%= transaction.id %>">
-          <%= transaction.id %> <%= get_provider_name(transaction.provider_id) %>
-        </p>
-      <% elsif transaction.provider_status == "Complete" && @user.type == "Provider" && transaction.provider_rating.blank? %>
-        <p data-id="<%= transaction.id %>">
-          <%= transaction.id %> <%= get_client_name(transaction.client_id) %>
-        </p>
-      <% end %>
-    <% end %>
-  </div>
-  <h3 class="title is-5 requests-title">Pending requests:</h3>
-  <div class="js-pending-requests">
-    <% @transactions.each do |transaction| %>
-      <% if transaction.provider_status == "Pending" && transaction.client_status == "Requested" %>
-        <p data-id="<%= transaction.id %>">
-          <%= transaction.id %>
-          <% if @user.type == 'Provider' %>
-            <%= get_client_name(transaction.client_id) %>
-          <% elsif @user.type == 'Client' %>
-            <%= get_provider_name(transaction.provider_id) %>
+<div class="columns">
+  <div class="column">
+    <h1 class="title is-3">Requests</h1>
+    <div class="js-current-requests">
+      <h3 class="title is-5 requests-title">Pending requests:</h3>
+      <div class="js-pending-requests">
+        <% @transactions.each do |transaction| %>
+          <% if transaction.provider_status == "Pending" && transaction.client_status == "Requested" %>
+            <p data-id="<%= transaction.id %>">
+              <%= transaction.id %>
+              <% if @user.type == 'Provider' %>
+                <%= get_client_name(transaction.client_id) %>
+              <% elsif @user.type == 'Client' %>
+                <%= get_provider_name(transaction.provider_id) %>
+              <% end %>
+            </p>
           <% end %>
-        </p>
-      <% end %>
-    <% end %>
-  </div>
-  <h3 class="title is-5 requests-title">Accepted requests:</h3>
-  <div class="js-accepted-requests">
-    <% @transactions.each do |transaction| %>
-      <% if transaction.provider_status == "Accepted" && transaction.client_status == "Requested" %>
-        <p data-id="<%= transaction.id %>">
-          <%= transaction.id %>
-          <% if @user.type == 'Provider' %>
-            <%= get_client_name(transaction.client_id) %>
-          <% elsif @user.type == 'Client' %>
-            <%= get_provider_name(transaction.provider_id) %>
+        <% end %>
+      </div>
+      <h3 class="title is-5 requests-title">Accepted requests:</h3>
+      <div class="js-accepted-requests">
+        <% @transactions.each do |transaction| %>
+          <% if transaction.provider_status == "Accepted" && transaction.client_status == "Requested" %>
+            <p data-id="<%= transaction.id %>">
+              <%= transaction.id %>
+              <% if @user.type == 'Provider' %>
+                <%= get_client_name(transaction.client_id) %>
+              <% elsif @user.type == 'Client' %>
+                <%= get_provider_name(transaction.provider_id) %>
+              <% end %>
+            </p>
           <% end %>
-        </p>
-      <% end %>
-    <% end %>
-  </div>
-  <h3 class="title is-5 requests-title">Rejected requests:</h3>
-  <div class="js-rejected-requests">
-    <% @transactions.each do |transaction| %>
-      <% if transaction.provider_status == "Rejected" && transaction.client_status == "Requested" %>
-        <p data-id="<%= transaction.id %>">
-          <%= transaction.id %>
-          <% if @user.type == 'Provider' %>
-            <%= get_client_name(transaction.client_id) %>
-          <% elsif @user.type == 'Client' %>
-            <%= get_provider_name(transaction.provider_id) %>
+        <% end %>
+      </div>
+      <h3 class="title is-5 requests-title">Rejected requests:</h3>
+      <div class="js-rejected-requests">
+        <% @transactions.each do |transaction| %>
+          <% if transaction.provider_status == "Rejected" && transaction.client_status == "Requested" %>
+            <p data-id="<%= transaction.id %>">
+              <%= transaction.id %>
+              <% if @user.type == 'Provider' %>
+                <%= get_client_name(transaction.client_id) %>
+              <% elsif @user.type == 'Client' %>
+                <%= get_provider_name(transaction.provider_id) %>
+              <% end %>
+            </p>
           <% end %>
-        </p>
-      <% end %>
-    <% end %>
-  </div>
-  <h3 class="title is-5 requests-title">Cancelled requests:</h3>
-  <div class="js-cancelled-requests">
-    <% @transactions.each do |transaction| %>
-      <% if transaction.client_status == "Cancelled" %>
-        <p data-id="<%= transaction.id %>">
-          <%= transaction.id %>
-          <% if @user.type == 'Provider' %>
-            <%= get_client_name(transaction.client_id) %>
-          <% elsif @user.type == 'Client' %>
-            <%= get_provider_name(transaction.provider_id) %>
+        <% end %>
+      </div>
+      <h3 class="title is-5 requests-title">Cancelled requests:</h3>
+      <div class="js-cancelled-requests">
+        <% @transactions.each do |transaction| %>
+          <% if transaction.client_status == "Cancelled" %>
+            <p data-id="<%= transaction.id %>">
+              <%= transaction.id %>
+              <% if @user.type == 'Provider' %>
+                <%= get_client_name(transaction.client_id) %>
+              <% elsif @user.type == 'Client' %>
+                <%= get_provider_name(transaction.provider_id) %>
+              <% end %>
+            </p>
           <% end %>
-        </p>
-      <% end %>
-    <% end %>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>
