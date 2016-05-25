@@ -37,7 +37,9 @@ button.js-request-service {
     color: #ecf0f1;
     margin-bottom: 10px;
     width: 100%;
-    line-height: 20px
+    line-height: 20px;
+    display: block;
+    text-align: center;
 }
 
 button.js-request-service:hover {
@@ -72,6 +74,7 @@ button.js-send-request {
     border-top: 5px solid #2ecc71;
     color: #ecf0f1;
     display: block;
+    text-align: center;
 }
 
 button.js-send-request:hover {
