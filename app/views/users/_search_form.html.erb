@@ -3,6 +3,7 @@
       <%= f.label :service_id %>
       <span class="select">
       <select id="js-selection" name="user[service_id]">
+        <option value="0">Select Service</option>
         <% select_tag_array.each do |service| %>
           <% if service.kind_of?(String) %>
             </optgroup><optgroup label="<%= service %>">
@@ -16,7 +17,7 @@
     </span>
 
     <span class="select">
-      <%= select_tag(:providers, options_for_select([['Price asc', 1],['Price desc', 2]]), id:"filter") %>
+      <%= select_tag(:providers, options_for_select([['Price asc', 1],['Price desc', 2],['Rating', 3]]), id:"filter") %>
     </span>
 
     <i class="is-hidden js-loading-icon fa fa-spinner fa-spin fa-3x fa-fw"></i>

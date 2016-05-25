@@ -30,11 +30,12 @@ class UsersController < ApplicationController
   end
 
   def providers_filtered
-    if params[:filter] == '1'
-      @providers = Provider.where(service_id: params[:service_id]).order(price_per_hour: :asc)
-    elsif params[:filter] == '2'
-      @providers = Provider.where(service_id: params[:service_id]).order(price_per_hour: :desc)
+    if params[:service_id].to_i == 0
+      @providers = Provider.all
+    else
+      @providers = Provider.where(service_id: params[:service_id])
     end
+    @providers = @providers.retrieve_results(params[:filter])
     render json: @providers
   end
 
