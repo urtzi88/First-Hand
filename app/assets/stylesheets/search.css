@@ -71,6 +71,7 @@ button.js-send-request {
     border: 0;
     border-top: 5px solid #2ecc71;
     color: #ecf0f1;
+    display: block;
 }
 
 button.js-send-request:hover {
