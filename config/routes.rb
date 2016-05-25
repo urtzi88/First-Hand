@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root to: 'users#profile'
+  root to: 'users#search'
   devise_for :users
 
   resources :users, only: [] do

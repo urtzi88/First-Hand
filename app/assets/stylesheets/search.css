@@ -29,10 +29,6 @@ div.provider-box-content {
     margin-left: 10px;
 }
 
-.provider-box-content h1 {
-    font-family: 'Quicksand', sans-serif;
-}
-
 button.js-request-service {
     border-radius: 0;
     background-color: #7f8c8d;

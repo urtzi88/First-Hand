@@ -7,11 +7,12 @@
         <% @transactions.each do |transaction| %>
           <% if transaction.provider_status == "Pending" && transaction.client_status == "Requested" %>
             <p data-id="<%= transaction.id %>">
-              <%= transaction.id %>
+              <%= transaction.date_time.strftime('%d %b %Y') %>
               <% if @user.type == 'Provider' %>
                 <%= get_client_name(transaction.client_id) %>
               <% elsif @user.type == 'Client' %>
                 <%= get_provider_name(transaction.provider_id) %>
+                <%= get_service_name(get_provider(transaction.provider_id).service_id) %>
               <% end %>
             </p>
           <% end %>
@@ -21,14 +22,15 @@
       <div class="js-accepted-requests">
         <% @transactions.each do |transaction| %>
           <% if transaction.provider_status == "Accepted" && transaction.client_status == "Requested" %>
-            <p data-id="<%= transaction.id %>">
-              <%= transaction.id %>
-              <% if @user.type == 'Provider' %>
-                <%= get_client_name(transaction.client_id) %>
-              <% elsif @user.type == 'Client' %>
-                <%= get_provider_name(transaction.provider_id) %>
-              <% end %>
-            </p>
+          <p data-id="<%= transaction.id %>">
+            <%= transaction.date_time.strftime('%d %b %Y') %>
+            <% if @user.type == 'Provider' %>
+              <%= get_client_name(transaction.client_id) %>
+            <% elsif @user.type == 'Client' %>
+              <%= get_provider_name(transaction.provider_id) %>
+              <%= get_service_name(get_provider(transaction.provider_id).service_id) %>
+            <% end %>
+          </p>
           <% end %>
         <% end %>
       </div>
@@ -36,14 +38,15 @@
       <div class="js-rejected-requests">
         <% @transactions.each do |transaction| %>
           <% if transaction.provider_status == "Rejected" && transaction.client_status == "Requested" %>
-            <p data-id="<%= transaction.id %>">
-              <%= transaction.id %>
-              <% if @user.type == 'Provider' %>
-                <%= get_client_name(transaction.client_id) %>
-              <% elsif @user.type == 'Client' %>
-                <%= get_provider_name(transaction.provider_id) %>
-              <% end %>
-            </p>
+          <p data-id="<%= transaction.id %>">
+            <%= transaction.date_time.strftime('%d %b %Y') %>
+            <% if @user.type == 'Provider' %>
+              <%= get_client_name(transaction.client_id) %>
+            <% elsif @user.type == 'Client' %>
+              <%= get_provider_name(transaction.provider_id) %>
+              <%= get_service_name(get_provider(transaction.provider_id).service_id) %>
+            <% end %>
+          </p>
           <% end %>
         <% end %>
       </div>
@@ -51,14 +54,15 @@
       <div class="js-cancelled-requests">
         <% @transactions.each do |transaction| %>
           <% if transaction.client_status == "Cancelled" %>
-            <p data-id="<%= transaction.id %>">
-              <%= transaction.id %>
-              <% if @user.type == 'Provider' %>
-                <%= get_client_name(transaction.client_id) %>
-              <% elsif @user.type == 'Client' %>
-                <%= get_provider_name(transaction.provider_id) %>
-              <% end %>
-            </p>
+          <p data-id="<%= transaction.id %>">
+            <%= transaction.date_time.strftime('%d %b %Y') %>
+            <% if @user.type == 'Provider' %>
+              <%= get_client_name(transaction.client_id) %>
+            <% elsif @user.type == 'Client' %>
+              <%= get_provider_name(transaction.provider_id) %>
+              <%= get_service_name(get_provider(transaction.provider_id).service_id) %>
+            <% end %>
+          </p>
           <% end %>
         <% end %>
       </div>
