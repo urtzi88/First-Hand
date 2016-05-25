@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
             index_slide += 1;
             i == 0 ? i = 3 : i;
             slider(i);
-        }, 5000);
+        }, 10000);
 
     }
 
