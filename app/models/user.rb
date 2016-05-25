@@ -28,4 +28,17 @@ class User < ActiveRecord::Base
             methods: [:avatar_url])
     end
   end
+
+  def update_rating(params)
+    avg_rat = self.average_rating.to_f
+    rat_am = self.rating_amount.to_i
+    new_rat_am = rat_am + 1
+    if self.type == "Provider"
+      new_rating = params[:rating][:client_rating].to_f
+    elsif self.type == "Client"
+      new_rating = params[:rating][:provider_rating].to_f
+    end
+    new_avg_rat = (avg_rat * rat_am / new_rat_am) + (new_rating / new_rat_am)
+    self.update(average_rating: new_avg_rat, rating_amount: new_rat_am)
+  end
 end

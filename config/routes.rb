@@ -14,6 +14,5 @@ Rails.application.routes.draw do
       patch '/feedback', to: 'transactions#feedback', as: :transaction_feedback
     end
   end
-  get '/users_index', to: 'tests#index', as: :users_index
 
 end

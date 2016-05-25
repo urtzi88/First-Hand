@@ -40,27 +40,12 @@ class UsersController < ApplicationController
 
   def update_user_rating
     if current_user.type == "Client"
-      user = User.find(params[:provider])
+      @user = User.find(params[:provider])
     else
-      user = User.find(params[:client])
+      @user = User.find(params[:client])
     end
-    update_rating(user)
-    render json: user
-  end
-
-  private
-
-  def update_rating(user)
-    avg_rat = user.average_rating.to_f
-    rat_am = user.rating_amount.to_i
-    new_rat_am = rat_am + 1
-    if current_user.type == "Client"
-      new_rating = params[:rating][:client_rating].to_f
-    elsif current_user.type == "Provider"
-      new_rating = params[:rating][:provider_rating].to_f
-    end
-    new_avg_rat = (avg_rat * rat_am / new_rat_am) + (new_rating / new_rat_am)
-    user.update(average_rating: new_avg_rat, rating_amount: new_rat_am)
+    @user.update_rating(params)
+    render json: @user
   end
 
 end
